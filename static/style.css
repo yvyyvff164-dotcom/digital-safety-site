@@ -1,56 +1,94 @@
 body {
-    background: linear-gradient(120deg, #e3f2fd, #fce4ec);
-    font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(120deg, #e3f2fd, #fce4ec);
 }
 
 .container {
-    max-width: 900px;
-    margin: 60px auto;
-    background: white;
-    padding: 40px;
-    border-radius: 14px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    display: flex;
+    height: 100vh;
 }
 
-h1 {
-    text-align: center;
-    color: #1a237e;
+/* СОЛ ЖАҚ */
+.sidebar {
+    width: 260px;
+    background: #1e1e2f;
+    color: white;
+    padding: 20px;
 }
 
-p {
-    text-align: center;
-    font-size: 18px;
-    color: #444;
+.sidebar h2 {
+    margin-bottom: 20px;
 }
 
-h3 {
-    margin-top: 40px;
-    color: #333;
-}
-
-ul {
+.sidebar ul {
     list-style: none;
     padding: 0;
 }
 
-ul li {
-    margin: 15px 0;
+.sidebar li {
+    padding: 10px;
+    margin-bottom: 8px;
+    background: #2b2b40;
+    border-radius: 6px;
+    cursor: pointer;
 }
 
-ul li a {
-    display: block;
-    padding: 15px;
-    background: #e3f2fd;
+.sidebar li.active {
+    background: #4caf50;
+}
+
+/* ОРТА */
+.content {
+    flex: 1;
+    padding: 30px;
+    overflow-y: auto;
+}
+
+.teacher {
+    background: white;
+    padding: 20px;
     border-radius: 10px;
-    color: #0d47a1;
-    text-decoration: none;
-    font-size: 17px;
-    transition: 0.3s;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
-ul li a:hover {
-    background: #bbdefb;
-    transform: translateX(5px);
+.code {
+    width: 100%;
+    height: 120px;
+    font-family: monospace;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.run-btn {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.run-btn:hover {
+    background: #43a047;
+}
+
+.output {
+    margin-top: 20px;
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.result {
+    margin-top: 10px;
+    background: #f1f1f1;
+    padding: 10px;
+    border-radius: 6px;
+    font-family: monospace;
 }

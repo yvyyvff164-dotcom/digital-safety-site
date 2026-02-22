@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>📦 Айнымалылар</h1>
+
+<iframe width="100%" height="315"
+src="https://youtube.com/embed/nTbPOCShQ6I"
+allowfullscreen></iframe>
+
+<p>
+Айнымалылар деректерді сақтау үшін қолданылады.
+Олар арқылы мәтін, сан және басқа мәндермен жұмыс істеуге болады.
+Python тілінде айнымалыларды қолдану өте оңай.
+</p>
+
+<textarea id="code" rows="6" style="width:100%;">
+name = "Aruzhan"
+age = 14
+print(name)
+print(age)
+</textarea>
+
+<textarea id="input_data" rows="1" style="width:100%;"></textarea>
+
+<button onclick="runPython()">▶ Run</button>
+<pre id="output"></pre>
+
+{% endblock %}

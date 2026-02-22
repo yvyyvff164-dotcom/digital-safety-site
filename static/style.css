@@ -1,94 +1,163 @@
-body {
+/* RESET */
+* {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(120deg, #e3f2fd, #fce4ec);
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
 }
 
+/* BODY */
+body {
+    background: #0f172a;
+    color: #e5e7eb;
+}
+
+/* LAYOUT */
 .container {
     display: flex;
-    height: 100vh;
+    min-height: 100vh;
 }
 
-/* СОЛ ЖАҚ */
+/* SIDEBAR */
 .sidebar {
     width: 260px;
-    background: #1e1e2f;
-    color: white;
+    background: linear-gradient(180deg, #020617, #020617);
     padding: 20px;
+    border-right: 1px solid #1e293b;
 }
 
-.sidebar h2 {
-    margin-bottom: 20px;
+.sidebar h3 {
+    color: #38bdf8;
+    font-size: 20px;
+    margin-bottom: 15px;
+    text-align: center;
 }
 
 .sidebar ul {
     list-style: none;
-    padding: 0;
 }
 
-.sidebar li {
-    padding: 10px;
-    margin-bottom: 8px;
-    background: #2b2b40;
-    border-radius: 6px;
-    cursor: pointer;
+.sidebar ul li {
+    margin-bottom: 10px;
 }
 
-.sidebar li.active {
-    background: #4caf50;
+/* BUTTON-LINKS */
+.sidebar ul li a {
+    display: block;
+    padding: 12px 14px;
+    background: #020617;
+    border-radius: 10px;
+    color: #e5e7eb;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.25s ease;
+    border: 1px solid #1e293b;
 }
 
-/* ОРТА */
+.sidebar ul li a:hover {
+    background: #38bdf8;
+    color: #020617;
+    transform: translateX(5px);
+}
+
+/* HR */
+.sidebar hr {
+    margin: 18px 0;
+    border: none;
+    height: 1px;
+    background: #1e293b;
+}
+
+/* CONTENT */
 .content {
     flex: 1;
-    padding: 30px;
-    overflow-y: auto;
+    padding: 40px;
 }
 
-.teacher {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
+/* TITLES */
+.content h1 {
+    font-size: 34px;
+    color: #38bdf8;
     margin-bottom: 20px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
-.code {
+.content h3 {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    color: #7dd3fc;
+}
+
+/* TEXT */
+.content p {
+    font-size: 17px;
+    line-height: 1.7;
+    color: #e5e7eb;
+    max-width: 900px;
+}
+
+/* VIDEO */
+iframe {
+    border-radius: 14px;
+    margin: 20px 0;
+    border: 1px solid #1e293b;
+}
+
+/* CODE AREA */
+textarea {
     width: 100%;
-    height: 120px;
-    font-family: monospace;
-    font-size: 16px;
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
+    background: #020617;
+    color: #22c55e;
+    border: 1px solid #1e293b;
+    border-radius: 10px;
+    padding: 14px;
+    font-size: 15px;
+    resize: vertical;
+    outline: none;
 }
 
-.run-btn {
-    margin-top: 10px;
-    padding: 10px 20px;
-    font-size: 16px;
-    background: #4caf50;
-    color: white;
+textarea:focus {
+    border-color: #38bdf8;
+}
+
+/* RUN BUTTON */
+button {
+    margin-top: 12px;
+    padding: 12px 22px;
+    background: linear-gradient(135deg, #38bdf8, #0ea5e9);
     border: none;
-    border-radius: 8px;
+    border-radius: 12px;
+    color: #020617;
+    font-size: 16px;
+    font-weight: 600;
     cursor: pointer;
+    transition: all 0.25s ease;
 }
 
-.run-btn:hover {
-    background: #43a047;
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(56,189,248,0.5);
 }
 
-.output {
-    margin-top: 20px;
-    background: #fff;
+/* OUTPUT */
+pre {
+    margin-top: 15px;
+    background: #020617;
     padding: 15px;
-    border-radius: 8px;
+    border-radius: 10px;
+    color: #22c55e;
+    border: 1px solid #1e293b;
+    min-height: 50px;
 }
 
-.result {
-    margin-top: 10px;
-    background: #f1f1f1;
-    padding: 10px;
-    border-radius: 6px;
-    font-family: monospace;
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #1e293b;
+    }
 }

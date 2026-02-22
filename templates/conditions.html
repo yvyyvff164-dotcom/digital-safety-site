@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>🔀 Шарттар (if / else)</h1>
+
+<iframe width="100%" height="315"
+src="https://www.youtube.com/embed/EKcp1xuM-l0"
+allowfullscreen></iframe>
+
+<p>
+Шарттар бағдарламаның шешім қабылдауына көмектеседі.
+Егер шарт дұрыс болса — бір код,
+ал дұрыс болмаса — басқа код орындалады.
+</p>
+
+<textarea id="code" rows="7" style="width:100%;">
+age = int(input())
+if age >= 18:
+    print("Ересек")
+else:
+    print("Кәмелетке толмаған")
+</textarea>
+
+<textarea id="input_data" rows="1" style="width:100%;">
+16
+</textarea>
+
+<button onclick="runPython()">▶ Run</button>
+<pre id="output"></pre>
+
+{% endblock %}

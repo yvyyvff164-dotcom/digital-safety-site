@@ -1,39 +1,87 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h1>🖨 Print командасы</h1>
+<h1>🖨 Print() командасы және мәліметтерді шығару</h1>
 
-<!-- 🎥 VIDEO -->
-<iframe
-    width="100%"
-    height="315"
-    src="https://www.youtube.com/embed/2B91x1IG4W0"
-    title="Print командасы"
-    frameborder="0"
-    allowfullscreen>
-</iframe>
+<div class="video-wrapper">
+    <iframe
+        width="100%"
+        height="360"
+        src="https://www.youtube.com/embed/2B91x1IG4W0"
+        title="Print командасы"
+        allowfullscreen>
+    </iframe>
+</div>
 
 <p>
-Print командасы экранға ақпарат шығару үшін қолданылады.
-Ол бағдарламаның нәтижесін көруге көмектеседі.
-Print арқылы мәтін, сандар және есептеу нәтижелері шығарылады.
+    <code>print()</code> — бұл Python-дағы ең жиі қолданылатын функция. Оның негізгі мақсаты — бағдарлама орындалуының нәтижесін экранға (консольге) шығару. 
 </p>
 
-<textarea id="code" rows="5" style="width:100%;">
-print("Сәлем, Python!")
-print(10 + 5)
-</textarea>
+<hr>
 
-<textarea id="input_data" rows="1" style="width:100%;"></textarea>
+### 💡 Print() функциясының құпиялары
 
-<button onclick="runPython()">▶ Run</button>
-<pre id="output"></pre>
 
-<!-- 🧠 CODEPEN -->
+
+Көпшілік тек мәтін шығаруды біледі, бірақ `print()`-тің пайдалы параметрлері бар:
+* **sep=" "** — элементтер арасына қандай белгі қоюды анықтайды (әдепкі бойынша бос орын).
+* **end="\n"** — жол соңына не қоюды анықтайды (әдепкі бойынша келесі жолға өту).
+
+<div class="card-grid">
+    <div class="feature-card">
+        <h4>Мәтін шығару</h4>
+        <p><code>print("Сәлем!")</code></p>
+    </div>
+    <div class="feature-card">
+        <h4>Сандар мен есептер</h4>
+        <p><code>print(25 + 75)</code></p>
+    </div>
+    <div class="feature-card">
+        <h4>Бірнеше мән</h4>
+        <p><code>print("A", "B", "C")</code></p>
+    </div>
+</div>
+
+<hr>
+
+### 🧪 Тәжірибе жасап көр (Sandbox)
+
+Төмендегі кодты өзгертіп, **Run** батырмасын басыңыз. Мысалы, `sep="-"` қосып көріңіз.
+
+<div class="editor-container">
+    <textarea id="code" rows="10">
+# 1. Қарапайым шығару
+print("Python-ға қош келдіңіз!")
+
+# 2. Математикалық есептеу
+print("5 + 10 =", 5 + 10)
+
+# 3. sep параметрін қолдану (арасын бөлу)
+print("01", "01", "2024", sep=".")
+
+# 4. Бірнеше жолды біріктіру
+print("Бұл бірінші жол", end=" ---> ")
+print("Бұл жалғасы")
+    </textarea>
+</div>
+
+<button class="btn-run" onclick="runCode()">▶ Run Code</button>
+
+<div style="margin-top: 15px; color: #94a3b8; font-size: 14px;">Нәтиже (Output):</div>
+<pre id="output">Мұнда бағдарлама нәтижесі шығады...</pre>
+
+<hr>
+
+<div class="feature-card" style="border-left: 4px solid #22c55e;">
+    <h4>🧠 Өзіңді тексер:</h4>
+    <p>Мәтінді экранға шығару үшін ол міндетті түрде <b>тырнақшаға (" ")</b> алынуы керек. Егер тырнақшасыз жазсаңыз, Python оны айнымалы деп қабылдап, қате (NameError) береді.</p>
+</div>
+
 <a href="https://codepen.io/zlreibuh-the-sasster/pen/dPpbXqN"
    target="_blank"
-   class="task-link">
-    🧠 Print командасы бойынша тапсырмалар (CodePen)
+   class="btn-primary"
+   style="text-decoration: none; display: inline-block; margin-top: 20px;">
+    🧠 CodePen-дегі тапсырмаларды орындау
 </a>
 
 {% endblock %}

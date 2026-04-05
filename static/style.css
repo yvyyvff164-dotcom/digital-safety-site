@@ -1,202 +1,317 @@
-/* RESET */
+/* ========================================
+    CORE RESET & VARIABLES (LIGHT VERSION)
+    ========================================
+*/
+:root {
+    --bg-light: #f8fafc;
+    --sidebar-bg: #ffffff;
+    --accent-blue: #0284c7; /* Біршама қанық көк */
+    --accent-glow: rgba(2, 132, 199, 0.15);
+    --text-primary: #1e293b; /* Қою сұр/көк мәтін */
+    --text-secondary: #64748b;
+    --border-color: #e2e8f0;
+    --success: #16a34a;
+    --transition-fast: 0.2s ease;
+    --transition-standard: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif;
+    font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
 }
 
-/* BODY */
+/* Гладкая прокрутка */
+html {
+    scroll-behavior: smooth;
+}
+
+/* ========================================
+    SCROLLBAR STYLING
+    ========================================
+*/
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-light);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-blue);
+}
+
+/* ========================================
+    BODY & LAYOUT
+    ========================================
+*/
 body {
-    background: radial-gradient(circle at top, #020617, #020617 60%);
-    color: #e5e7eb;
+    background: radial-gradient(circle at top, #ffffff, var(--bg-light) 70%);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+    line-height: 1.6;
 }
 
-/* LAYOUT */
 .container {
     display: flex;
     min-height: 100vh;
+    position: relative;
 }
 
-/* SIDEBAR */
+/* ========================================
+    SIDEBAR (LEFT NAVIGATION)
+    ========================================
+*/
 .sidebar {
-    width: 280px;
-    background: linear-gradient(180deg, #020617, #020617);
-    padding: 24px;
-    border-right: 1px solid #1e293b;
-    box-shadow: 10px 0 40px rgba(0,0,0,0.6);
+    width: 300px;
+    background: var(--sidebar-bg);
+    padding: 32px 20px;
+    border-right: 1px solid var(--border-color);
+    box-shadow: 5px 0 30px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    z-index: 100;
 }
 
 .sidebar h3 {
-    color: #38bdf8;
-    font-size: 22px;
-    margin-bottom: 20px;
+    color: var(--accent-blue);
+    font-size: 24px;
+    margin-bottom: 30px;
     text-align: center;
-    letter-spacing: 1px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 800;
+    text-shadow: 0 0 10px var(--accent-glow);
 }
 
 .sidebar ul {
     list-style: none;
+    flex-grow: 1;
 }
 
 .sidebar ul li {
-    margin-bottom: 12px;
+    margin-bottom: 14px;
+    perspective: 1000px;
 }
 
-/* BUTTON LINKS */
 .sidebar ul li a {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 14px 16px;
-    background: linear-gradient(145deg, #020617, #020617);
-    border-radius: 14px;
-    color: #e5e7eb;
+    gap: 12px;
+    padding: 15px 20px;
+    background: rgba(241, 245, 249, 0.8);
+    border-radius: 16px;
+    color: var(--text-primary);
     text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    border: 1px solid #1e293b;
+    font-weight: 500;
+    transition: var(--transition-standard);
+    border: 1px solid transparent;
     position: relative;
-    overflow: hidden;
-}
-
-.sidebar ul li a::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, transparent, rgba(56,189,248,0.2), transparent);
-    opacity: 0;
-    transition: 0.3s;
-}
-
-.sidebar ul li a:hover::before {
-    opacity: 1;
 }
 
 .sidebar ul li a:hover {
-    background: #020617;
-    color: #38bdf8;
-    transform: translateX(8px);
-    box-shadow: 0 0 25px rgba(56,189,248,0.3);
+    background: #ffffff;
+    color: var(--accent-blue);
+    transform: translateX(10px) rotateY(-5deg);
+    border-color: var(--accent-blue);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
 }
 
-/* HR */
 .sidebar hr {
-    margin: 22px 0;
+    margin: 25px 0;
     border: none;
     height: 1px;
-    background: linear-gradient(90deg, transparent, #1e293b, transparent);
+    background: linear-gradient(90deg, transparent, var(--border-color), transparent);
 }
 
-/* CONTENT */
+/* ========================================
+    MAIN CONTENT AREA
+    ========================================
+*/
 .content {
     flex: 1;
-    padding: 50px;
+    padding: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    animation: fadeIn 0.8s ease-out;
 }
 
-/* TITLES */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 .content h1 {
-    font-size: 40px;
-    color: #38bdf8;
-    margin-bottom: 24px;
-    text-shadow: 0 0 30px rgba(56,189,248,0.4);
+    font-size: 48px;
+    font-weight: 800;
+    color: var(--accent-blue);
+    margin-bottom: 30px;
+    background: linear-gradient(to right, #0f172a, var(--accent-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-.content h3 {
-    margin-top: 40px;
-    margin-bottom: 12px;
-    color: #7dd3fc;
-    font-size: 22px;
-}
-
-/* TEXT */
 .content p {
-    font-size: 18px;
-    line-height: 1.8;
-    color: #e5e7eb;
-    max-width: 900px;
+    font-size: 19px;
+    color: var(--text-primary);
+    margin-bottom: 25px;
+    opacity: 0.9;
 }
 
-/* VIDEO */
-iframe {
+/* ========================================
+    COMPONENTS (VIDEO, CARDS, CODE)
+    ========================================
+*/
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    margin: 40px 0;
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 340px;
-    border-radius: 18px;
-    margin: 30px 0;
-    border: 1px solid #1e293b;
-    box-shadow: 0 0 40px rgba(0,0,0,0.6);
+    height: 100%;
+    border-radius: 24px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
-/* CODE AREA */
+.editor-container {
+    background: #fff;
+    padding: 2px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, var(--border-color), transparent);
+    margin-top: 40px;
+}
+
 textarea {
     width: 100%;
-    background: linear-gradient(180deg, #020617, #020617);
-    color: #22c55e;
-    border: 1px solid #1e293b;
-    border-radius: 16px;
-    padding: 16px;
+    min-height: 200px;
+    background: #ffffff;
+    color: #166534; /* Қою жасыл код үшін */
+    border: 1px solid var(--border-color);
+    border-radius: 18px;
+    padding: 20px;
+    font-family: 'Fira Code', 'Courier New', monospace;
     font-size: 16px;
     resize: vertical;
     outline: none;
-    box-shadow: inset 0 0 20px rgba(0,0,0,0.6);
+    box-shadow: inset 0 2px 8px rgba(0,0,0,0.05);
 }
 
 textarea:focus {
-    border-color: #38bdf8;
-    box-shadow: 0 0 20px rgba(56,189,248,0.4);
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.1);
 }
 
-/* RUN BUTTON */
-button {
-    margin-top: 18px;
-    padding: 14px 26px;
-    background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+/* ========================================
+    BUTTONS
+    ========================================
+*/
+.btn-primary {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 16px 32px;
+    background: linear-gradient(135deg, var(--accent-blue), #0ea5e9);
     border: none;
-    border-radius: 16px;
-    color: #020617;
-    font-size: 17px;
+    border-radius: 50px;
+    color: #ffffff;
+    font-size: 18px;
     font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     cursor: pointer;
-    transition: all 0.25s ease;
-    box-shadow: 0 10px 30px rgba(56,189,248,0.4);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 20px var(--accent-glow);
 }
 
-button:hover {
-    transform: translateY(-2px) scale(1.05);
-    box-shadow: 0 0 40px rgba(56,189,248,0.8);
+.btn-primary:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 15px 30px var(--accent-glow);
 }
 
-/* OUTPUT */
-pre {
-    margin-top: 18px;
-    background: linear-gradient(180deg, #020617, #020617);
-    padding: 18px;
-    border-radius: 16px;
-    color: #22c55e;
-    border: 1px solid #1e293b;
-    min-height: 60px;
-    font-size: 15px;
-    box-shadow: inset 0 0 20px rgba(0,0,0,0.6);
+/* ========================================
+    RATING SYSTEM (LIGHT POPUP)
+    ========================================
+*/
+.rating-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease;
 }
 
-/* RESPONSIVE */
-@media (max-width: 900px) {
-    .container {
-        flex-direction: column;
-    }
+.rating-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
 
-    .sidebar {
-        width: 100%;
-        border-right: none;
-        border-bottom: 1px solid #1e293b;
-        box-shadow: none;
-    }
+.rating-card {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 30px;
+    border: 1px solid var(--border-color);
+    text-align: center;
+    max-width: 450px;
+    width: 90%;
+    transform: scale(0.8);
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+}
 
-    .content {
-        padding: 25px;
-    }
+.rating-overlay.active .rating-card {
+    transform: scale(1);
+}
 
-    iframe {
-        height: 220px;
-    }
+.rating-card h2 {
+    color: var(--text-primary);
+}
+
+.stars label {
+    color: #e2e8f0;
+}
+
+.stars label:hover,
+.stars label:hover ~ label,
+.stars input:checked ~ label {
+    color: #f59e0b; /* Алтын түс */
+}
+
+/* ========================================
+    CARDS
+    ========================================
+*/
+.feature-card {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
 }

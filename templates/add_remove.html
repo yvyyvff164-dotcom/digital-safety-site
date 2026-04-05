@@ -1,57 +1,77 @@
-<!DOCTYPE html>
-<html lang="kk">
-<head>
-    <meta charset="UTF-8">
-    <title>Элемент қосу және жою</title>
-    <link rel="stylesheet" href="/static/style.css">
-</head>
-<body>
+{% extends "base.html" %}
+{% block content %}
 
-<div class="content">
+<h1>➕➖ Элемент қосу және жою</h1>
 
-    <h1>➕➖ Элемент қосу және жою</h1>
-
-    <!-- 🎥 VIDEO -->
-    <iframe
-        width="100%"
-        height="360"
-        src="https://www.youtube.com/embed/cFJfbB80S3k"
-        title="Элемент қосу және жою"
-        frameborder="0"
+<div class="video-wrapper" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-bottom: 25px; border-radius: 15px; background: #1e293b;">
+    <iframe 
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
+        src="https://www.youtube.com/embed/cFJfbB80S3k" 
         allowfullscreen>
     </iframe>
-
-    <p>
-        Python тілінде тізімге жаңа элементтер қосуға және жоюға болады.
-        Элемент қосу үшін <b>append()</b> әдісі қолданылады.
-        Ал артық немесе қате элементтерді жою үшін <b>remove()</b> немесе <b>pop()</b> әдістері бар.
-        Бұл тізіммен жұмыс істеуді икемді етеді.
-    </p>
-
-    <h2>📌 Мысал 1: Элемент қосу</h2>
-
-    <pre><code class="language-python">
-sandary = [1, 2, 3]
-sandary.append(4)
-print(sandary)
-    </code></pre>
-
-    <h2>📌 Мысал 2: Элемент жою</h2>
-
-    <pre><code class="language-python">
-sandary.remove(2)
-print(sandary)
-    </code></pre>
-
-    <h2>🧠 Практикалық тапсырма</h2>
-
-    <a href="https://codepen.io/zlreibuh-the-sasster/pen/ByLBLVe"
-       target="_blank"
-       class="task-link">
-        🚀 Элемент қосу және жою тапсырмалары (CodePen)
-    </a>
-
 </div>
 
-</body>
-</html>
+<p>
+    Python-да тізімдер <b>динамикалық</b> болып табылады. Бұл дегеніміз — бағдарлама жұмыс істеп тұрған кезде тізімге жаңа мән қосуға немесе барын өшіріп тастауға болады.
+</p>
+
+
+
+<hr>
+
+<h3>🛠 Негізгі әдістер (Methods)</h3>
+
+<div class="card-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 30px;">
+    <div class="feature-card" style="padding: 15px; background: rgba(34, 197, 94, 0.1); border-radius: 12px; border: 1px solid #22c55e;">
+        <h4 style="color: #22c55e; margin-top: 0;">Қосу (Adding)</h4>
+        <ul>
+            <li><code>append(x)</code> — соңына қосады.</li>
+            <li><code>insert(i, x)</code> — i-ші индекске қосады.</li>
+        </ul>
+    </div>
+    <div class="feature-card" style="padding: 15px; background: rgba(239, 68, 68, 0.1); border-radius: 12px; border: 1px solid #ef4444;">
+        <h4 style="color: #ef4444; margin-top: 0;">Жою (Removing)</h4>
+        <ul>
+            <li><code>remove(x)</code> — мәні х-ке тең бірінші элементті өшіреді.</li>
+            <li><code>pop(i)</code> — i-ші индекстегі элементті өшіріп, оны қайтарады.</li>
+        </ul>
+    </div>
+</div>
+
+<hr>
+
+<h3>🧪 Тәжірибелік алаң (Sandbox)</h3>
+<p>Тізімді қалай өзгертуге болатынын тексеріп көр:</p>
+
+<div class="editor-container" style="margin-bottom: 15px;">
+    <textarea id="code" rows="12" style="width:100%; background: #0f172a; color: #f8fafc; padding: 15px; border-radius: 8px; border: 1px solid #334155; font-family: 'Fira Code', monospace;">
+# Бастапқы тізім
+оқушылар = ["Али", "Сара", "Марат"]
+print("Бастапқы:", оқушылар)
+
+# Жаңа оқушы қосу
+оқушылар.append("Айша")
+print("append кейін:", оқушылар)
+
+# Маратты тізімнен өшіру
+оқушылар.remove("Марат")
+print("remove кейін:", оқушылар)
+
+# Бірінші тұрған оқушыны өшіру
+өшті = оқушылар.pop(0)
+print("Өшірілген оқушы:", өшті)
+print("Қорытынды тізім:", оқушылар)
+    </textarea>
+</div>
+
+<button class="btn-run" onclick="runCode()">▶ Run Code</button>
+
+<div style="margin-top: 15px; color: #94a3b8; font-size: 14px;">Нәтиже (Output):</div>
+<pre id="output" style="background: #000; color: #22c55e; padding: 15px; border-radius: 8px; min-height: 50px; border: 1px solid #1e293b; font-family: 'Fira Code', monospace;">Нәтиже осында шығады...</pre>
+
+<div class="feature-card" style="margin-top: 30px; border-left: 4px solid #38bdf8; background: rgba(56, 189, 248, 0.05); padding: 15px; border-radius: 8px;">
+    <h4 style="margin-top: 0; color: #38bdf8;">💡 Есіңде сақта:</h4>
+    <p style="margin-bottom: 0;"><code>remove()</code> мән бойынша іздеп өшіреді, ал <code>pop()</code> индекс бойынша (орны бойынша) өшіреді.</p>
+</div>
+
+{% endblock %}

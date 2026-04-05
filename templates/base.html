@@ -2,34 +2,157 @@
 <html lang="kk">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Python оқу сайты</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        /* БАЗАЛЫҚ КОНТЕЙНЕР (SIDEBAR ҮШІН) */
+        body { margin: 0; display: flex; min-height: 100vh; background: #0f172a; color: white; font-family: sans-serif; }
+        
+        .sidebar { 
+            width: 280px; 
+            background: #1e293b; 
+            padding: 20px; 
+            border-right: 1px solid #334155;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .content { 
+            margin-left: 300px; 
+            padding: 40px; 
+            flex: 1; 
+            max-width: 900px; 
+        }
+
+        .sidebar h3 { color: #38bdf8; margin-bottom: 20px; border-bottom: 1px solid #334155; padding-bottom: 10px; }
+        .sidebar ul { list-style: none; padding: 0; }
+        .sidebar li { margin-bottom: 12px; }
+        .sidebar a { color: #cbd5e1; text-decoration: none; transition: 0.3s; display: block; padding: 8px; border-radius: 5px; }
+        .sidebar a:hover { background: #334155; color: #38bdf8; }
+
+        /* БАҒАЛАУ ЖҮЙЕСІНІҢ СТИЛІ */
+        .rating-section {
+            margin-top: 50px;
+            padding: 20px;
+            background: #1e293b;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid #334155;
+        }
+        .stars { font-size: 30px; cursor: pointer; color: #475569; transition: 0.2s; }
+        .stars:hover, .stars.active { color: #fbbf24; }
+        .rating-text { margin-top: 10px; font-size: 14px; color: #94a3b8; }
+
+        /* СЕНІҢ КНОПКА ЖӘНЕ OUTPUT СТИЛЬДЕРІҢ (ӨЗГЕРІССІЗ) */
+        .btn-run {
+            margin-top: 15px; padding: 12px 30px;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: white; border: none; border-radius: 10px;
+            font-size: 16px; font-weight: bold; cursor: pointer;
+            transition: all 0.3s ease; display: flex; align-items: center; gap: 10px;
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4);
+        }
+        .btn-run:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(34, 197, 94, 0.6); filter: brightness(1.1); }
+        #output {
+            margin-top: 15px; background: #020617; color: #22c55e;
+            padding: 20px; border-radius: 12px; border: 1px solid #1e293b;
+            min-height: 50px; font-family: 'Fira Code', monospace;
+            white-space: pre-wrap; box-shadow: inset 0 2px 10px rgba(0,0,0,0.5);
+        }
+    </style>
 </head>
 <body>
 
-<div class="container">
     <aside class="sidebar">
-        <h3>Сабақтар</h3>
+        <h3>🐍 Python Курсы</h3>
         <ul>
             <li><a href="/">Python деген не?</a></li>
-            <li><a href="/print">Print</a></li>
-            <li><a href="/variables">Айнымалылар</a></li>
-            <li><a href="/conditions">Шарттар</a></li>
-
-            <hr>
-
-            <li><a href="/functions">Функциялар</a></li>
-            <li><a href="/sorting">Сұрыптау</a></li>
-            <li><a href="/arrays1">Бірөлшемді массив</a></li>
-            <li><a href="/arrays2">Екіөлшемді массив</a></li>
-            <li><a href="/add_remove">Элемент қосу және жою</a></li>
+            <li><a href="/print">🖨 Print командасы</a></li>
+            <li><a href="/variables">📦 Айнымалылар</a></li>
+            <li><a href="/conditions">🔀 Шарттар</a></li>
+            <li><a href="/functions">🧩 Функциялар</a></li>
+            <li><a href="/sorting">📊 Сұрыптау</a></li>
+            <li><a href="/arrays1">📉 Бірөлшемді массив</a></li>
+            <li><a href="/arrays2">📋 Екіөлшемді массив</a></li>
+            <li><a href="/add_remove">➕ Қосу/Жою</a></li>
         </ul>
     </aside>
 
     <main class="content">
         {% block content %}{% endblock %}
+
+        <div class="rating-section">
+            <h4>Сабақ қалай өтті?</h4>
+            <div id="star-container">
+                <span class="stars" onclick="setRating(1)">★</span>
+                <span class="stars" onclick="setRating(2)">★</span>
+                <span class="stars" onclick="setRating(3)">★</span>
+                <span class="stars" onclick="setRating(4)">★</span>
+                <span class="stars" onclick="setRating(5)">★</span>
+            </div>
+            <div id="rating-msg" class="rating-text">Бағаңызды қалдырыңыз</div>
+        </div>
     </main>
-</div>
+
+<script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+<script>
+    // БАҒАЛАУ ФУНКЦИЯСЫ
+    function setRating(n) {
+        const stars = document.querySelectorAll('.stars');
+        const msg = document.getElementById('rating-msg');
+        
+        stars.forEach((star, index) => {
+            if (index < n) star.classList.add('active');
+            else star.classList.remove('active');
+        });
+        
+        const feedback = ["Нашар", "Орташа", "Жақсы", "Өте жақсы", "Керемет! 🚀"];
+        msg.innerText = "Рақмет! Сіздің бағаңыз: " + feedback[n-1];
+        msg.style.color = "#38bdf8";
+    }
+
+    // СЕНІҢ RUN CODE ФУНКЦИЯҢ (ӨЗГЕРІССІЗ)
+    let pyodideInstance = null;
+    async function getPyodide() {
+        if (!pyodideInstance) {
+            pyodideInstance = await loadPyodide();
+        }
+        return pyodideInstance;
+    }
+
+    async function runCode() {
+        const codeArea = document.getElementById("code");
+        const outputArea = document.getElementById("output");
+        const btn = document.querySelector(".btn-run");
+
+        if (!codeArea || !outputArea) return;
+
+        btn.disabled = true;
+        btn.innerHTML = "<span>⌛ Жүктелуде...</span>";
+        outputArea.innerText = "Код орындалуда...";
+
+        try {
+            const pyodide = await getPyodide();
+            await pyodide.runPythonAsync(`
+import sys
+from io import StringIO
+sys.stdout = StringIO()
+            `);
+            await pyodide.runPythonAsync(codeArea.value);
+            const stdout = pyodide.runPython("sys.stdout.getvalue()");
+            outputArea.innerText = stdout || "Код орындалды (нәтиже бос)";
+            outputArea.style.color = "#22c55e";
+        } catch (err) {
+            outputArea.innerText = "Қате: " + err;
+            outputArea.style.color = "#ef4444";
+        } finally {
+            btn.disabled = false;
+            btn.innerHTML = "▶ Run Code";
+        }
+    }
+</script>
 
 </body>
 </html>

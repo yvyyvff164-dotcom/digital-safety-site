@@ -1,56 +1,78 @@
-<!DOCTYPE html>
-<html lang="kk">
-<head>
-    <meta charset="UTF-8">
-    <title>Бірөлшемді массив</title>
-    <link rel="stylesheet" href="/static/style.css">
-</head>
-<body>
+{% extends "base.html" %}
+{% block content %}
 
-<div class="content">
+<h1>📦 Бірөлшемді массивтер (Lists)</h1>
 
-    <h1>📦 Бірөлшемді массив</h1>
-
-    <!-- 🎥 VIDEO -->
-    <iframe
-        width="100%"
-        height="360"
-        src="https://www.youtube.com/embed/Zg_gXzHFNlI"
+<div class="video-wrapper" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-bottom: 25px; border-radius: 15px; background: #1e293b;">
+    <iframe 
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
+        src="https://www.youtube.com/embed/Zg_gXzHFNlI" 
         title="Бірөлшемді массив Python"
-        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
         allowfullscreen>
     </iframe>
-
-    <p>
-        Бірөлшемді массив — бұл бірнеше элементтен тұратын тізім.
-        Python тілінде оны <b>list</b> деп атайды.
-        Тізім ішінде сандар, мәтіндер немесе басқа мәндер сақталады.
-        Бұл деректермен жұмыс істеуді жеңілдетеді.
-    </p>
-
-    <h2>📌 Мысал 1: Мәтіндер массиві</h2>
-
-    <pre><code class="language-python">
-aty = ["Алма", "Алмұрт", "Банан"]
-print(aty)
-    </code></pre>
-
-    <h2>📌 Мысал 2: Индекс арқылы оқу</h2>
-
-    <pre><code class="language-python">
-sandary = [10, 20, 30]
-print(sandary[0])
-    </code></pre>
-
-    <h2>🧠 Практикалық тапсырма</h2>
-
-    <a href="https://codepen.io/zlreibuh-the-sasster/pen/PwGYGNd"
-       target="_blank"
-       class="task-link">
-        🚀 Бірөлшемді массив тапсырмалары (CodePen)
-    </a>
-
 </div>
 
-</body>
-</html>
+<p>
+    Python-да массивтерді <b>Тізімдер (Lists)</b> деп атайды. Бұл — бір айнымалының ішінде көптеген мәндерді (сандарды, мәтіндерді) сақтауға мүмкіндік беретін деректер құрылымы.
+</p>
+
+
+
+<hr>
+
+<h3>🔢 Индекстеу: Элементтерге қалай қол жеткізуге болады?</h3>
+<p>Тізімдегі әрбір элементтің өз орны (нөмірі) болады. Назар аударыңыз: <b>санау 0-ден басталады!</b></p>
+
+<div class="card-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-bottom: 20px;">
+    <div class="feature-card" style="padding: 15px; background: rgba(30, 41, 59, 0.5); border-radius: 10px; border: 1px solid #334155;">
+        <h4 style="color: #38bdf8; margin-top: 0;">Оң индекс (0, 1, 2...)</h4>
+        <p>Солдан оңға қарай санау. Бірінші элемент — <code>[0]</code>.</p>
+    </div>
+    <div class="feature-card" style="padding: 15px; background: rgba(30, 41, 59, 0.5); border-radius: 10px; border: 1px solid #334155;">
+        <h4 style="color: #fbbf24; margin-top: 0;">Теріс индекс (-1, -2...)</h4>
+        <p>Оңнан солға қарай (соңынан бастап) санау. Соңғы элемент — <code>[-1]</code>.</p>
+    </div>
+</div>
+
+<hr>
+
+<h3>🧪 Тәжірибелік алаң (Sandbox)</h3>
+<p>Тізімді өзгертіп, индекстермен жұмыс істеп көр:</p>
+
+<div class="editor-container" style="margin-bottom: 15px;">
+    <textarea id="code" rows="12" style="width:100%; background: #0f172a; color: #f8fafc; padding: 15px; border-radius: 8px; border: 1px solid #334155; font-family: 'Fira Code', monospace;">
+# Тізім құру
+жемістер = ["Алма", "Алмұрт", "Банан", "Шие"]
+
+print("Толық тізім:", жемістер)
+
+# Индекс арқылы оқу
+print("Бірінші жеміс (0):", жемістер[0])
+print("Екінші жеміс (1):", жемістер[1])
+print("Ең соңғы жеміс (-1):", жемістер[-1])
+
+# Тізімдегі элементті өзгерту
+жемістер[2] = "Қауын"
+print("Жаңартылған тізім:", жемістер)
+    </textarea>
+</div>
+
+<button class="btn-run" onclick="runCode()">▶ Run Code</button>
+
+<div style="margin-top: 15px; color: #94a3b8; font-size: 14px;">Нәтиже (Output):</div>
+<pre id="output" style="background: #000; color: #22c55e; padding: 15px; border-radius: 8px; min-height: 50px; border: 1px solid #1e293b; font-family: 'Fira Code', monospace;">Нәтиже осында шығады...</pre>
+
+<div class="feature-card" style="margin-top: 30px; border-left: 4px solid #ef4444; background: rgba(239, 68, 68, 0.05); padding: 15px; border-radius: 8px;">
+    <h4 style="margin-top: 0; color: #ef4444;">⚠️ Жиі кездесетін қате:</h4>
+    <p style="margin-bottom: 0;">Егер сіз тізімде жоқ индексті шақырсаңыз (мысалы, 3 элементі бар тізімнен 10-шыны сұрасаңыз), Python <code>IndexError</code> қатесін береді.</p>
+</div>
+
+<a href="https://codepen.io/zlreibuh-the-sasster/pen/PwGYGNd" 
+   target="_blank" 
+   class="btn-primary" 
+   style="text-decoration: none; display: inline-block; margin-top: 20px;">
+    🚀 Бірөлшемді массив тапсырмаларын орындау
+</a>
+
+{% endblock %}

@@ -1,49 +1,88 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h1>🧩 Функциялар</h1>
+<h1>🧩 Python-дағы функциялар</h1>
 
-<!-- 🎥 VIDEO -->
-<iframe 
-    width="100%" 
-    height="360"
-    src="https://www.youtube.com/embed/6K5v4--G__U"
-    title="Python Functions"
-    allowfullscreen>
-</iframe>
+<div class="video-wrapper" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-bottom: 20px; border-radius: 12px; background: #1e293b;">
+    <iframe 
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
+        src="https://www.youtube.com/embed/6K5v4--G__U" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+    </iframe>
+</div>
 
 <p>
-    Функция — бұл белгілі бір тапсырманы орындайтын код бөлігі.
-    Python тілінде функция бір рет жазылады, бірақ оны бірнеше рет қолдануға болады.
-    Бұл кодты қысқа, түсінікті және ыңғайлы етеді.
-    Функциялар арқылы үлкен бағдарламаларды бөліктерге бөлуге болады.
-    Функция <b>def</b> кілт сөзі арқылы жасалады.
+    <b>Функция</b> — бұл белгілі бір тапсырманы орындайтын және қайта-қайта қолдануға болатын код блогы. 
+    Python-да екі түрлі функция болады: кірістірілген (built-in) және пайдаланушы жасаған (custom).
 </p>
 
-<h2>📌 Мысал 1: Қарапайым функция</h2>
 
-<pre>
-def salam():
-    print("Сәлем, бұл функция!")
 
-salam()
-</pre>
+<hr>
 
-<h2>📌 Мысал 2: Параметрлі функция</h2>
+<h2>📚 Ең маңызды 30 кірістірілген функция</h2>
 
-<pre>
-def kosu(a, b):
-    return a + b
+<div class="card-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px;">
+    <div class="feature-card"><b>1. print()</b><br><small>Экранға шығару</small></div>
+    <div class="feature-card"><b>2. input()</b><br><small>Мәлімет енгізу</small></div>
+    <div class="feature-card"><b>3. len()</b><br><small>Объект ұзындығы</small></div>
+    <div class="feature-card"><b>4. type()</b><br><small>Типті анықтау</small></div>
+    <div class="feature-card"><b>5. int()</b><br><small>Бүтін санға айналдыру</small></div>
+    <div class="feature-card"><b>6. float()</b><br><small>Ондық санға айналдыру</small></div>
+    <div class="feature-card"><b>7. str()</b><br><small>Мәтінге айналдыру</small></div>
+    <div class="feature-card"><b>8. list()</b><br><small>Тізім жасау</small></div>
+    <div class="feature-card"><b>9. tuple()</b><br><small>Кортеж жасау</small></div>
+    <div class="feature-card"><b>10. dict()</b><br><small>Сөздік жасау</small></div>
+    <div class="feature-card"><b>11. set()</b><br><small>Жиын жасау</small></div>
+    <div class="feature-card"><b>12. range()</b><br><small>Диапазон құру</small></div>
+    <div class="feature-card"><b>13. sum()</b><br><small>Қосындыны есептеу</small></div>
+    <div class="feature-card"><b>14. max()</b><br><small>Максимумды табу</small></div>
+    <div class="feature-card"><b>15. min()</b><br><small>Минимумды табу</small></div>
+    <div class="feature-card"><b>16. abs()</b><br><small>Санның модулі</small></div>
+    <div class="feature-card"><b>17. round()</b><br><small>Дөңгелектеу</small></div>
+    <div class="feature-card"><b>18. pow()</b><br><small>Дәрежеге шығару</small></div>
+    <div class="feature-card"><b>19. sorted()</b><br><small>Сұрыптау</small></div>
+    <div class="feature-card"><b>20. reversed()</b><br><small>Тізімді кері айналдыру</small></div>
+    <div class="feature-card"><b>21. enumerate()</b><br><small>Индекспен нөмірлеу</small></div>
+    <div class="feature-card"><b>22. zip()</b><br><small>Тізімдерді біріктіру</small></div>
+    <div class="feature-card"><b>23. map()</b><br><small>Функцияны тізімге қолдану</small></div>
+    <div class="feature-card"><b>24. filter()</b><br><small>Элементтерді іріктеу</small></div>
+    <div class="feature-card"><b>25. all()</b><br><small>Барлығы True ма?</small></div>
+    <div class="feature-card"><b>26. any()</b><br><small>Кем дегенде біреуі True ма?</small></div>
+    <div class="feature-card"><b>27. chr()</b><br><small>Кодты символға айналдыру</small></div>
+    <div class="feature-card"><b>28. ord()</b><br><small>Символды кодқа айналдыру</small></div>
+    <div class="feature-card"><b>29. dir()</b><br><small>Объект әдістерін көру</small></div>
+    <div class="feature-card"><b>30. help()</b><br><small>Көмекші нұсқаулық</small></div>
+</div>
 
-print(kosu(5, 7))
-</pre>
+<hr>
 
-<h2>🧠 Практикалық тапсырма</h2>
+<h2>🧠 Тәжірибелік алаң (Sandbox)</h2>
+<p>Функцияларды қолданып, өз кодыңызды жазып көріңіз:</p>
 
-<a href="https://codepen.io/zlreibuh-the-sasster/pen/bNwbwGO"
-   target="_blank"
-   class="task-link">
-   🚀 Функциялар бойынша тапсырмалар (CodePen)
-</a>
+<div class="editor-container" style="margin-bottom: 15px;">
+    <textarea id="code" rows="10" style="width:100%; background: #0f172a; color: #f8fafc; padding: 15px; border-radius: 8px; border: 1px solid #334155; font-family: 'Courier New', monospace;">
+# max() және min() функцияларын қолдану
+sandar = [12, 45, 2, 89, 34]
+print("Тізім:", sandar)
+print("Ең үлкен сан:", max(sandar))
+print("Ең кіші сан:", min(sandar))
+print("Қосындысы:", sum(sandar))
+
+# Тізімді сұрыптау
+print("Сұрыпталған:", sorted(sandar))
+    </textarea>
+</div>
+
+<button class="btn-run" onclick="runCode()">▶ Run Code</button>
+
+<div style="margin-top: 15px; color: #94a3b8; font-size: 14px;">Нәтиже (Output):</div>
+<pre id="output" style="background: #000; color: #22c55e; padding: 15px; border-radius: 8px; min-height: 40px; border: 1px solid #1e293b;">Нәтиже осында шығады...</pre>
+
+<div class="feature-card" style="margin-top: 30px; border-left: 4px solid #38bdf8; background: rgba(56, 189, 248, 0.05); padding: 15px; border-radius: 8px;">
+    <h4 style="margin-top: 0;">💡 Кеңес:</h4>
+    <p style="margin-bottom: 0;">Егер функцияның не істейтінін ұмытып қалсаңыз, <code>help(функция_аты)</code> деп жазып көріңіз. Мысалы: <code>help(print)</code>.</p>
+</div>
 
 {% endblock %}

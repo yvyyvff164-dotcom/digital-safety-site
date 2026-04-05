@@ -1,36 +1,98 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h1>📦 Айнымалылар</h1>
+<h1>📦 Айнымалылар (Variables)</h1>
 
-<iframe width="100%" height="315"
-src="https://youtube.com/embed/nTbPOCShQ6I"
-allowfullscreen></iframe>
+<div class="video-wrapper" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-bottom: 25px; border-radius: 15px; background: #1e293b;">
+    <iframe 
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
+        src="https://www.youtube.com/embed/nTbPOCShQ6I" 
+        title="Python Variables"
+        allowfullscreen>
+    </iframe>
+</div>
 
 <p>
-Айнымалылар деректерді сақтау үшін қолданылады.
-Олар арқылы мәтін, сан және басқа мәндермен жұмыс істеуге болады.
-Python тілінде айнымалыларды қолдану өте оңай.
+    <strong>Айнымалы</strong> — бұл мәліметтерді сақтауға арналған атаулы "қорапша". Біз бұл қорапшаға сан, мәтін немесе басқа да ақпаратты сақтап, кейін оны бағдарлама ішінде аты арқылы шақыра аламыз.
 </p>
 
-<textarea id="code" rows="6" style="width:100%;">
+
+
+<hr>
+
+<h3>📊 Негізгі деректер типтері</h3>
+<p>Python-да айнымалының түрін көрсету міндетті емес, ол өзі анықтайды:</p>
+
+<table style="width: 100%; border-collapse: collapse; margin-bottom: 30px; background: rgba(30,41,59,0.3); border-radius: 12px; overflow: hidden;">
+    <tr style="background: #1e293b; color: #38bdf8; text-align: left;">
+        <th style="padding: 12px;">Тип аты</th>
+        <th style="padding: 12px;">Мағынасы</th>
+        <th style="padding: 12px;">Мысал</th>
+    </tr>
+    <tr>
+        <td style="padding: 10px; border-bottom: 1px solid #1e293b;"><code>int</code></td>
+        <td style="padding: 10px; border-bottom: 1px solid #1e293b;">Бүтін сандар</td>
+        <td style="padding: 10px; border-bottom: 1px solid #1e293b;"><code>age = 15</code></td>
+    </tr>
+    <tr>
+        <td style="padding: 10px; border-bottom: 1px solid #1e293b;"><code>str</code></td>
+        <td style="padding: 10px; border-bottom: 1px solid #1e293b;">Мәтіндік жолдар</td>
+        <td style="padding: 10px; border-bottom: 1px solid #1e293b;"><code>name = "Sanzhar"</code></td>
+    </tr>
+    <tr>
+        <td style="padding: 10px; border-bottom: 1px solid #1e293b;"><code>float</code></td>
+        <td style="padding: 10px; border-bottom: 1px solid #1e293b;">Ондық сандар</td>
+        <td style="padding: 10px; border-bottom: 1px solid #1e293b;"><code>pi = 3.14</code></td>
+    </tr>
+    <tr>
+        <td style="padding: 10px; border-bottom: 1px solid #1e293b;"><code>bool</code></td>
+        <td style="padding: 10px; border-bottom: 1px solid #1e293b;">Логикалық мән</td>
+        <td style="padding: 10px; border-bottom: 1px solid #1e293b;"><code>is_active = True</code></td>
+    </tr>
+</table>
+
+<hr>
+
+<h3>🛠 Тәжірибелік алаң</h3>
+<p>Айнымалыларды құрып, олардың мәндерін экранға шығарып көр:</p>
+
+<div class="editor-container" style="margin-bottom: 15px;">
+    <textarea id="code" rows="10" style="width:100%; background: #0f172a; color: #f8fafc; padding: 15px; border-radius: 8px; border: 1px solid #334155; font-family: 'Fira Code', monospace;">
+# Айнымалыларды жариялау
 name = "Aruzhan"
 age = 14
-print(name)
-print(age)
-</textarea>
+city = "Almaty"
 
-<!-- 🔗 CodePen тапсырмасы -->
-<p>
-<a href="https://codepen.io/zlreibuh-the-sasster/pen/yyaBJRr"
-   target="_blank">
-    📦 Айнымалылар бойынша тапсырма (CodePen)
+# Шығару
+print("Аты-жөні:", name)
+print("Жасы:", age)
+print("Қаласы:", city)
+
+# Айнымалымен математикалық амал жасау
+future_age = age + 5
+print("5 жылдан кейінгі жасы:", future_age)
+    </textarea>
+</div>
+
+<button class="btn-run" onclick="runCode()">▶ Run Code</button>
+
+<div style="margin-top: 15px; color: #94a3b8; font-size: 14px;">Нәтиже:</div>
+<pre id="output" style="background: #000; color: #22c55e; padding: 15px; border-radius: 8px; min-height: 50px; border: 1px solid #1e293b; font-family: 'Fira Code', monospace;">Нәтиже осында шығады...</pre>
+
+<div class="feature-card" style="margin-top: 30px; border-left: 4px solid #f87171; background: rgba(248, 113, 113, 0.05); padding: 15px; border-radius: 8px;">
+    <h4 style="margin-top: 0; color: #f87171;">⚠️ Маңызды ережелер:</h4>
+    <ul style="margin-bottom: 0;">
+        <li>Айнымалы аты сандардан басталмауы керек.</li>
+        <li>Арасында бос орын (пробел) болмауы тиіс (оның орнына <code>_</code> қолданыңыз).</li>
+        <li>Python регистрге сезімтал (<code>Age</code> мен <code>age</code> — екі түрлі айнымалы).</li>
+    </ul>
+</div>
+
+<a href="https://codepen.io/zlreibuh-the-sasster/pen/yyaBJRr" 
+   target="_blank" 
+   class="btn-primary" 
+   style="text-decoration: none; display: inline-block; margin-top: 20px;">
+    📦 CodePen-дегі айнымалылар тапсырмасы
 </a>
-</p>
-
-<textarea id="input_data" rows="1" style="width:100%;"></textarea>
-
-<button onclick="runPython()">▶ Run</button>
-<pre id="output"></pre>
 
 {% endblock %}

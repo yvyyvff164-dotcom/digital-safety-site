@@ -14,46 +14,74 @@
 
 <p>
     <b>Функция</b> — бұл белгілі бір тапсырманы орындайтын және қайта-қайта қолдануға болатын код блогы. 
-    Python-да екі түрлі функция болады: кірістірілген (built-in) және пайдаланушы жасаған (custom).
+    Python-да екі түрлі функция болады: кірістірілген (built-in) және пайдаланушы жасаған (custom). Олар кодты қысқартуға және логиканы реттеуге көмектеседі.
 </p>
-
-
 
 <hr>
 
 <h2>📚 Ең маңызды 30 кірістірілген функция</h2>
 
-<div class="card-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px;">
-    <div class="feature-card"><b>1. print()</b><br><small>Экранға шығару</small></div>
-    <div class="feature-card"><b>2. input()</b><br><small>Мәлімет енгізу</small></div>
-    <div class="feature-card"><b>3. len()</b><br><small>Объект ұзындығы</small></div>
-    <div class="feature-card"><b>4. type()</b><br><small>Типті анықтау</small></div>
-    <div class="feature-card"><b>5. int()</b><br><small>Бүтін санға айналдыру</small></div>
-    <div class="feature-card"><b>6. float()</b><br><small>Ондық санға айналдыру</small></div>
-    <div class="feature-card"><b>7. str()</b><br><small>Мәтінге айналдыру</small></div>
-    <div class="feature-card"><b>8. list()</b><br><small>Тізім жасау</small></div>
-    <div class="feature-card"><b>9. tuple()</b><br><small>Кортеж жасау</small></div>
-    <div class="feature-card"><b>10. dict()</b><br><small>Сөздік жасау</small></div>
-    <div class="feature-card"><b>11. set()</b><br><small>Жиын жасау</small></div>
-    <div class="feature-card"><b>12. range()</b><br><small>Диапазон құру</small></div>
-    <div class="feature-card"><b>13. sum()</b><br><small>Қосындыны есептеу</small></div>
-    <div class="feature-card"><b>14. max()</b><br><small>Максимумды табу</small></div>
-    <div class="feature-card"><b>15. min()</b><br><small>Минимумды табу</small></div>
-    <div class="feature-card"><b>16. abs()</b><br><small>Санның модулі</small></div>
-    <div class="feature-card"><b>17. round()</b><br><small>Дөңгелектеу</small></div>
-    <div class="feature-card"><b>18. pow()</b><br><small>Дәрежеге шығару</small></div>
-    <div class="feature-card"><b>19. sorted()</b><br><small>Сұрыптау</small></div>
-    <div class="feature-card"><b>20. reversed()</b><br><small>Тізімді кері айналдыру</small></div>
-    <div class="feature-card"><b>21. enumerate()</b><br><small>Индекспен нөмірлеу</small></div>
-    <div class="feature-card"><b>22. zip()</b><br><small>Тізімдерді біріктіру</small></div>
-    <div class="feature-card"><b>23. map()</b><br><small>Функцияны тізімге қолдану</small></div>
-    <div class="feature-card"><b>24. filter()</b><br><small>Элементтерді іріктеу</small></div>
-    <div class="feature-card"><b>25. all()</b><br><small>Барлығы True ма?</small></div>
-    <div class="feature-card"><b>26. any()</b><br><small>Кем дегенде біреуі True ма?</small></div>
-    <div class="feature-card"><b>27. chr()</b><br><small>Кодты символға айналдыру</small></div>
-    <div class="feature-card"><b>28. ord()</b><br><small>Символды кодқа айналдыру</small></div>
-    <div class="feature-card"><b>29. dir()</b><br><small>Объект әдістерін көру</small></div>
-    <div class="feature-card"><b>30. help()</b><br><small>Көмекші нұсқаулық</small></div>
+<div class="card-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px;">
+    
+    <div class="feature-card"><b>1. print()</b><br><small>Мәліметтерді консольге немесе стандартты шығару құрылғысына басып шығарады. Бірнеше аргументті қабылдап, оларды бос орын арқылы біріктіре алады.</small></div>
+    
+    <div class="feature-card"><b>2. input()</b><br><small>Пайдаланушыдан мәтіндік ақпаратты қабылдау үшін қолданылады. Енгізілген деректер әрқашан жол (string) түрінде қайтарылады.</small></div>
+    
+    <div class="feature-card"><b>3. len()</b><br><small>Объектінің (тізім, жол, сөздік) ішіндегі элементтер санын есептейді. Бұл циклдермен жұмыс істегенде өте пайдалы функция.</small></div>
+    
+    <div class="feature-card"><b>4. type()</b><br><small>Кез келген айнымалының немесе объектінің деректер типін анықтайды. Бағдарламада қателерді тексеру үшін жиі қолданылады.</small></div>
+    
+    <div class="feature-card"><b>5. int()</b><br><small>Мәтіндік сандарды немесе ондық сандарды бүтін сан форматына айналдырады. Егер мәтінде әріп болса, қате шығарады.</small></div>
+    
+    <div class="feature-card"><b>6. float()</b><br><small>Бүтін санды немесе сандық мәтінді жылжымалы нүктелі (ондық) санға түрлендіреді. Математикалық есептеулерде дәлдік үшін қажет.</small></div>
+    
+    <div class="feature-card"><b>7. str()</b><br><small>Кез келген деректер типін мәтіндік форматқа ауыстырады. Бұл сандарды мәтінмен біріктіріп шығару үшін өте ыңғайлы.</small></div>
+    
+    <div class="feature-card"><b>8. list()</b><br><small>Басқа деректер құрылымын (мысалы, кортеж немесе жиынды) тізімге айналдырады. Тізімдерді модификациялауға мүмкіндік береді.</small></div>
+    
+    <div class="feature-card"><b>9. tuple()</b><br><small>Элементтерді өзгермейтін кортеж форматына түрлендіреді. Бұл деректерді кездейсоқ өзгеруден қорғау үшін қолданылады.</small></div>
+    
+    <div class="feature-card"><b>10. dict()</b><br><small>Жаңа сөздік (кілт-мән жұптарын) жасау үшін пайдаланылады. Деректерді құрылымдалған түрде сақтауға мүмкіндік береді.</small></div>
+    
+    <div class="feature-card"><b>11. set()</b><br><small>Қайталанбайтын элементтерден тұратын жиын жасайды. Тізімдегі дубликаттарды тез арада жою үшін таптырмас құрал.</small></div>
+    
+    <div class="feature-card"><b>12. range()</b><br><small>Сандар тізбегін автоматты түрде генерациялайды. Негізінен `for` циклінде белгілі бір рет қайталау жасау үшін қолданылады.</small></div>
+    
+    <div class="feature-card"><b>13. sum()</b><br><small>Тізім немесе кортеж ішіндегі барлық сандық элементтердің қосындысын есептейді. Ол тек сандардан тұратын жинақтармен жұмыс істейді.</small></div>
+    
+    <div class="feature-card"><b>14. max()</b><br><small>Берілген элементтердің немесе жинақтың ішінен ең үлкен мәнді табады. Сонымен қатар алфавит бойынша ең соңғы мәнді анықтай алады.</small></div>
+    
+    <div class="feature-card"><b>15. min()</b><br><small>Жинақтың ішіндегі ең кіші мәнді анықтауға көмектеседі. Сандарды салыстыруда және диапазонның төменгі шегін табуда маңызды.</small></div>
+    
+    <div class="feature-card"><b>16. abs()</b><br><small>Санның абсолюттік мәнін (модулін) қайтарады. Теріс сандарды оң санға айналдыру үшін қолданылатын математикалық функция.</small></div>
+    
+    <div class="feature-card"><b>17. round()</b><br><small>Санды ең жақын бүтін мәнге дейін немесе көрсетілген ондық таңбаға дейін дөңгелектейді. Статистикалық есептерде жиі пайдаланылады.</small></div>
+    
+    <div class="feature-card"><b>18. pow()</b><br><small>Бір санды екінші санның дәрежесіне шығарады. Бұл `**` операторының баламасы болып табылады.</small></div>
+    
+    <div class="feature-card"><b>19. sorted()</b><br><small>Тізімді немесе кез келген жинақты өсу немесе кему ретімен сұрыптайды. Түпнұсқа тізімді өзгертпей, жаңа сұрыпталған тізім қайтарады.</small></div>
+    
+    <div class="feature-card"><b>20. reversed()</b><br><small>Элементтердің орналасу ретін кері бағытқа ауыстырады. Бұл тізімді соңынан басына қарай оқу қажет болғанда ыңғайлы.</small></div>
+    
+    <div class="feature-card"><b>21. enumerate()</b><br><small>Жинақтағы элементтерді индекспен бірге қайтарады. Цикл ішінде элементтің реттік нөмірін білу қажет болғанда қолданылады.</small></div>
+    
+    <div class="feature-card"><b>22. zip()</b><br><small>Бірнеше тізімді параллельді түрде біріктіріп, кортеждер жиынтығын жасайды. Екі түрлі деректі жұптастыру үшін таптырмас әдіс.</small></div>
+    
+    <div class="feature-card"><b>23. map()</b><br><small>Функцияны тізімдегі әрбір элементке жеке-жеке қолданады. Бұл кодты қысқартып, деректерді жылдам түрлендіруге мүмкіндік береді.</small></div>
+    
+    <div class="feature-card"><b>24. filter()</b><br><small>Белгілі бір шартқа сәйкес келетін элементтерді іріктеп алады. Шартты қанағаттандырмайтын мәндерді тізімнен алып тастайды.</small></div>
+    
+    <div class="feature-card"><b>25. all()</b><br><small>Егер жинақтағы барлық элементтер «ақиқат» (True) болса, True мәнін қайтарады. Егер тіпті бір элемент «жалған» болса, нәтиже False болады.</small></div>
+    
+    <div class="feature-card"><b>26. any()</b><br><small>Егер жинақта ең болмағанда бір «ақиқат» элемент болса, True береді. Барлық элементтер жалған болғанда ғана False қайтарады.</small></div>
+    
+    <div class="feature-card"><b>27. chr()</b><br><small>Unicode кестесіндегі сандық кодқа сәйкес келетін символды қайтарады. Мысалы, 65 санын 'A' әрпіне айналдырады.</small></div>
+    
+    <div class="feature-card"><b>28. ord()</b><br><small>Символдың Unicode кестесіндегі сандық кодын анықтайды. Бұл `chr()` функциясына кері әрекет жасайды.</small></div>
+    
+    <div class="feature-card"><b>29. dir()</b><br><small>Объектінің барлық қолжетімді әдістері мен қасиеттерінің тізімін көрсетеді. Бағдарламалау кезінде объектінің мүмкіндіктерін зерттеу үшін қолданылады.</small></div>
+    
+    <div class="feature-card"><b>30. help()</b><br><small>Кез келген функция немесе модуль туралы толық нұсқаулықты шығарады. Құжаттаманы тікелей код ішінде оқуға көмектеседі.</small></div>
 </div>
 
 <hr>
@@ -82,7 +110,7 @@ print("Сұрыпталған:", sorted(sandar))
 
 <div class="feature-card" style="margin-top: 30px; border-left: 4px solid #38bdf8; background: rgba(56, 189, 248, 0.05); padding: 15px; border-radius: 8px;">
     <h4 style="margin-top: 0;">💡 Кеңес:</h4>
-    <p style="margin-bottom: 0;">Егер функцияның не істейтінін ұмытып қалсаңыз, <code>help(функция_аты)</code> деп жазып көріңіз. Мысалы: <code>help(print)</code>.</p>
+    <p style="margin-bottom: 0;">Егер функцияның не істейтінін ұмытып қалсаңыз, <code>help(функция_аты)</code> деп жазып көріңіз. Мысалы: <code>help(print)</code>. Бұл сізге интернетсіз-ақ анықтама алуға көмектеседі.</p>
 </div>
 
 {% endblock %}

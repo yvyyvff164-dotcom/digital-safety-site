@@ -37,6 +37,11 @@ def arrays2():
 @app.route("/add_remove")
 def add_remove():
     return render_template("add_remove.html")
+    
+@app.route("/loops")
+def loops():
+    return render_template("loops.html")
+
 
 # ⚠️ МАҢЫЗДЫ
 if __name__ == "__main__":

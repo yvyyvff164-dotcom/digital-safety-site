@@ -3,9 +3,8 @@
 
 <h1>🧩 Python-дағы функциялар</h1>
 
-<div class="video-wrapper" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-bottom: 20px; border-radius: 12px; background: #1e293b;">
+<div class="video-wrapper">
     <iframe 
-        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
         src="https://www.youtube.com/embed/6K5v4--G__U" 
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
         allowfullscreen>
@@ -21,7 +20,7 @@
 
 <h2>📚 Ең маңызды 30 кірістірілген функция</h2>
 
-<div class="card-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px;">
+<div class="feature-grid">
     
     <div class="feature-card"><b>1. print()</b><br><small>Мәліметтерді консольге немесе стандартты шығару құрылғысына басып шығарады. Бірнеше аргументті қабылдап, оларды бос орын арқылы біріктіре алады.</small></div>
     
@@ -47,7 +46,7 @@
     
     <div class="feature-card"><b>12. range()</b><br><small>Сандар тізбегін автоматты түрде генерациялайды. Негізінен `for` циклінде белгілі бір рет қайталау жасау үшін қолданылады.</small></div>
     
-    <div class="feature-card"><b>13. sum()</b><br><small>Тізім немесе кортеж ішіндегі барлық сандық элементтердің қосындысын есептейді. Ол тек сандардан тұратын жинақтармен жұмыс істейді.</small></div>
+    <div class="feature-card"><b>13. sum()</b><br><small>Тізім немесе кортеж ішіндегі барлық сандық элементтердің қосындысын есептейді. Ол тек сандардан тұратын жинақтармен жұмыс ісетіндіктен маңызды.</small></div>
     
     <div class="feature-card"><b>14. max()</b><br><small>Берілген элементтердің немесе жинақтың ішінен ең үлкен мәнді табады. Сонымен қатар алфавит бойынша ең соңғы мәнді анықтай алады.</small></div>
     
@@ -55,7 +54,7 @@
     
     <div class="feature-card"><b>16. abs()</b><br><small>Санның абсолюттік мәнін (модулін) қайтарады. Теріс сандарды оң санға айналдыру үшін қолданылатын математикалық функция.</small></div>
     
-    <div class="feature-card"><b>17. round()</b><br><small>Санды ең жақын бүтін мәнге дейін немесе көрсетілген ондық таңбаға дейін дөңгелектейді. Статистикалық есептерде жиі пайдаланылады.</small></div>
+    <div class="feature-card"><b>17. round()</b><br><small>Санды ең жақын бүтін мәнге донгелектейді немесе көрсетілген ондық таңбаға дейін қысқартады.</small></div>
     
     <div class="feature-card"><b>18. pow()</b><br><small>Бір санды екінші санның дәрежесіне шығарады. Бұл `**` операторының баламасы болып табылады.</small></div>
     
@@ -89,8 +88,8 @@
 <h2>🧠 Тәжірибелік алаң (Sandbox)</h2>
 <p>Функцияларды қолданып, өз кодыңызды жазып көріңіз:</p>
 
-<div class="editor-container" style="margin-bottom: 15px;">
-    <textarea id="code" rows="10" style="width:100%; background: #0f172a; color: #f8fafc; padding: 15px; border-radius: 8px; border: 1px solid #334155; font-family: 'Courier New', monospace;">
+<div class="editor-container">
+    <textarea id="code" rows="10">
 # max() және min() функцияларын қолдану
 sandar = [12, 45, 2, 89, 34]
 print("Тізім:", sandar)
@@ -105,12 +104,12 @@ print("Сұрыпталған:", sorted(sandar))
 
 <button class="btn-run" onclick="runCode()">▶ Run Code</button>
 
-<div style="margin-top: 15px; color: #94a3b8; font-size: 14px;">Нәтиже (Output):</div>
-<pre id="output" style="background: #000; color: #22c55e; padding: 15px; border-radius: 8px; min-height: 40px; border: 1px solid #1e293b;">Нәтиже осында шығады...</pre>
+<div style="margin-top: 15px; color: var(--text-soft); font-size: 14px;">Нәтиже (Output):</div>
+<pre id="output">Нәтиже осында шығады...</pre>
 
-<div class="feature-card" style="margin-top: 30px; border-left: 4px solid #38bdf8; background: rgba(56, 189, 248, 0.05); padding: 15px; border-radius: 8px;">
-    <h4 style="margin-top: 0;">💡 Кеңес:</h4>
-    <p style="margin-bottom: 0;">Егер функцияның не істейтінін ұмытып қалсаңыз, <code>help(функция_аты)</code> деп жазып көріңіз. Мысалы: <code>help(print)</code>. Бұл сізге интернетсіз-ақ анықтама алуға көмектеседі.</p>
+<div class="feature-card" style="margin-top: 30px; border-left: 5px solid var(--primary-2); background: linear-gradient(180deg, rgba(0, 166, 251, 0.08) 0%, var(--surface) 100%);">
+    <h4>💡 Кеңес:</h4>
+    <p style="margin-bottom: 0;">Егер функцияны өзіңіз құрғыңыз келсе, кодты <code>def функция_аты():</code> операторынан бастау керек екенін ұмытпаңыз!</p>
 </div>
 
 {% endblock %}

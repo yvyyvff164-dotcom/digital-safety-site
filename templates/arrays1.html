@@ -3,9 +3,8 @@
 
 <h1>📦 Бірөлшемді массивтер (Lists)</h1>
 
-<div class="video-wrapper" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-bottom: 25px; border-radius: 15px; background: #1e293b;">
+<div class="video-wrapper">
     <iframe 
-        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
         src="https://www.youtube.com/embed/Zg_gXzHFNlI" 
         title="Бірөлшемді массив Python"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -17,31 +16,29 @@
     Python-да массивтерді <b>Тізімдер (Lists)</b> деп атайды. Бұл — бір айнымалының ішінде көптеген мәндерді (сандарды, мәтіндерді) сақтауға мүмкіндік беретін деректер құрылымы.
 </p>
 
-
-
 <hr>
 
-<h3>🔢 Индекстеу: Элементтерге қалай қол жеткізуге болады?</h3>
+<h2>🔢 Индекстеу: Элементтерге қалай қол жеткізуге болады?</h2>
 <p>Тізімдегі әрбір элементтің өз орны (нөмірі) болады. Назар аударыңыз: <b>санау 0-ден басталады!</b></p>
 
-<div class="card-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-bottom: 20px;">
-    <div class="feature-card" style="padding: 15px; background: rgba(30, 41, 59, 0.5); border-radius: 10px; border: 1px solid #334155;">
-        <h4 style="color: #38bdf8; margin-top: 0;">Оң индекс (0, 1, 2...)</h4>
-        <p>Солдан оңға қарай санау. Бірінші элемент — <code>[0]</code>.</p>
+<div class="feature-grid">
+    <div class="feature-card" style="border-left: 5px solid var(--primary); background: linear-gradient(180deg, rgba(15, 98, 254, 0.08) 0%, var(--surface) 100%);">
+        <h4 style="color: var(--primary); font-size: 20px; font-weight: 800; margin-bottom: 10px;">Оң индекс (0, 1, 2...)</h4>
+        <p style="color: var(--text-main); margin-bottom: 0;">Солдан оңға қарай санау. Бірінші элемент — <code>[0]</code>.</p>
     </div>
-    <div class="feature-card" style="padding: 15px; background: rgba(30, 41, 59, 0.5); border-radius: 10px; border: 1px solid #334155;">
-        <h4 style="color: #fbbf24; margin-top: 0;">Теріс индекс (-1, -2...)</h4>
-        <p>Оңнан солға қарай (соңынан бастап) санау. Соңғы элемент — <code>[-1]</code>.</p>
+    <div class="feature-card" style="border-left: 5px solid var(--warning); background: linear-gradient(180deg, rgba(245, 158, 11 0.08) 0%, var(--surface) 100%);">
+        <h4 style="color: var(--warning); font-size: 20px; font-weight: 800; margin-bottom: 10px;">Теріс индекс (-1, -2...)</h4>
+        <p style="color: var(--text-main); margin-bottom: 0;">Оңнан солға қарай (соңынан бастап) санау. Соңғы элемент — <code>[-1]</code>.</p>
     </div>
 </div>
 
 <hr>
 
-<h3>🧪 Тәжірибелік алаң (Sandbox)</h3>
+<h2>🧪 Тәжірибелік алаң (Sandbox)</h2>
 <p>Тізімді өзгертіп, индекстермен жұмыс істеп көр:</p>
 
-<div class="editor-container" style="margin-bottom: 15px;">
-    <textarea id="code" rows="12" style="width:100%; background: #0f172a; color: #f8fafc; padding: 15px; border-radius: 8px; border: 1px solid #334155; font-family: 'Fira Code', monospace;">
+<div class="editor-container">
+    <textarea id="code" rows="12">
 # Тізім құру
 жемістер = ["Алма", "Алмұрт", "Банан", "Шие"]
 
@@ -60,12 +57,12 @@ print("Жаңартылған тізім:", жемістер)
 
 <button class="btn-run" onclick="runCode()">▶ Run Code</button>
 
-<div style="margin-top: 15px; color: #94a3b8; font-size: 14px;">Нәтиже (Output):</div>
-<pre id="output" style="background: #000; color: #22c55e; padding: 15px; border-radius: 8px; min-height: 50px; border: 1px solid #1e293b; font-family: 'Fira Code', monospace;">Нәтиже осында шығады...</pre>
+<div style="margin-top: 15px; color: var(--text-soft); font-size: 14px;">Нәтиже (Output):</div>
+<pre id="output">Нәтиже осында шығады...</pre>
 
-<div class="feature-card" style="margin-top: 30px; border-left: 4px solid #ef4444; background: rgba(239, 68, 68, 0.05); padding: 15px; border-radius: 8px;">
-    <h4 style="margin-top: 0; color: #ef4444;">⚠️ Жиі кездесетін қате:</h4>
-    <p style="margin-bottom: 0;">Егер сіз тізімде жоқ индексті шақырсаңыз (мысалы, 3 элементі бар тізімнен 10-шыны сұрасаңыз), Python <code>IndexError</code> қатесін береді.</p>
+<div class="feature-card" style="margin-top: 30px; border-left: 5px solid var(--danger); background: linear-gradient(180deg, rgba(239, 68, 68, 0.08) 0%, var(--surface) 100%);">
+    <h4 style="color: var(--danger); font-size: 20px; font-weight: 800; margin-bottom: 10px;">⚠️ Жиі кездесетін қате:</h4>
+    <p style="color: var(--text-main); margin-bottom: 0;">Егер сіз тізімде жоқ индексті шақырсаңыз (мысалы, 3 элементі бар тізімнен 10-шыны сұрасаңыз), Python <code>IndexError</code> қатесін береді.</p>
 </div>
 
 <a href="https://codepen.io/zlreibuh-the-sasster/pen/PwGYGNd" 

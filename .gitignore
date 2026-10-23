@@ -1,0 +1,22 @@
+# Секретные переменные и ключи
+.env
+.env.local
+.env.*
+
+# Кэш и виртуальные файлы Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+
+# Файлы настроек VS Code и PyCharm
+.vscode/
+.idea/
+*.swp
+*.sqlite3
+
+# Временные файлы операционных систем
+.DS_Store
+Thumbs.db

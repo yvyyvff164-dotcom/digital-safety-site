@@ -3,9 +3,8 @@
 
 <h1>📊 Деректерді сұрыптау (Sorting)</h1>
 
-<div class="video-wrapper" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-bottom: 25px; border-radius: 15px; background: #1e293b;">
+<div class="video-wrapper">
     <iframe 
-        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
         src="https://www.youtube.com/embed/Qi5HEyla4_U" 
         title="Python Sorting"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -17,32 +16,31 @@
     <strong>Сұрыптау</strong> — бұл элементтерді белгілі бір реттілікпен (өсу немесе кему ретімен) орналастыру процесі. Python-да тізімдерді сұрыптаудың екі негізгі жолы бар: <code>sort()</code> әдісі және <code>sorted()</code> функциясы.
 </p>
 
-
-
 <hr>
 
-<h3>🛠 Сұрыптаудың негізгі түрлері</h3>
+<h2>🛠 Сұрыптаудың негізгі түрлері</h2>
 
-<div class="card-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 30px;">
-    <div class="feature-card" style="padding: 20px; background: rgba(30, 41, 59, 0.5); border-radius: 12px; border: 1px solid #334155;">
-        <h4 style="color: #38bdf8;">1. Өсу ретімен (Ascending)</h4>
-        <p>Кіші саннан үлкенге қарай реттеу. Әдепкі бойынша осылай істейді.</p>
-        <code>sandar.sort()</code>
+<!-- Переключено на ваш глобальный класс .feature-grid -->
+<div class="feature-grid" style="margin-bottom: 30px;">
+    <div class="feature-card" style="border-left: 5px solid var(--primary-2); background: linear-gradient(180deg, rgba(0, 166, 251, 0.05) 0%, var(--surface) 100%);">
+        <h4 style="color: var(--primary-2); font-size: 20px; font-weight: 800; margin-bottom: 10px;">1. Өсу ретімен (Ascending)</h4>
+        <p style="color: var(--text-main);">Кіші саннан үлкенге қарай реттеу. Әдепкі бойынша осылай істейді.</p>
+        <code style="background: rgba(0, 0, 0, 0.05); padding: 4px 8px; border-radius: 6px; color: var(--primary-dark);">sandar.sort()</code>
     </div>
-    <div class="feature-card" style="padding: 20px; background: rgba(30, 41, 59, 0.5); border-radius: 12px; border: 1px solid #334155;">
-        <h4 style="color: #f87171;">2. Кему ретімен (Descending)</h4>
-        <p>Үлкен саннан кішіге қарай кері реттеу.</p>
-        <code>sandar.sort(reverse=True)</code>
+    <div class="feature-card" style="border-left: 5px solid var(--danger); background: linear-gradient(180deg, rgba(239, 68, 68, 0.05) 0%, var(--surface) 100%);">
+        <h4 style="color: var(--danger); font-size: 20px; font-weight: 800; margin-bottom: 10px;">2. Кему ретімен (Descending)</h4>
+        <p style="color: var(--text-main);">Үлкен саннан кішіге қарай кері реттеу.</p>
+        <code style="background: rgba(0, 0, 0, 0.05); padding: 4px 8px; border-radius: 6px; color: var(--danger);">sandar.sort(reverse=True)</code>
     </div>
 </div>
 
 <hr>
 
-<h3>🧪 Тәжірибе: Кодты тексеру</h3>
+<h2>🧪 Тәжірибе: Кодты тексеру</h2>
 <p>Төмендегі тізімдегі сандарды немесе сөздерді өзгертіп, сұрыптап көр:</p>
 
-<div class="editor-container" style="margin-bottom: 15px;">
-    <textarea id="code" rows="12" style="width:100%; background: #0f172a; color: #f8fafc; padding: 15px; border-radius: 8px; border: 1px solid #334155; font-family: 'Fira Code', monospace;">
+<div class="editor-container">
+    <textarea id="code" rows="12">
 # 1. Сандар тізімі
 sandar = [42, 7, 100, 23, 1]
 sandar.sort()
@@ -50,7 +48,7 @@ print("Өсу ретімен:", sandar)
 
 # 2. Кері сұрыптау
 sandar.sort(reverse=True)
-print("Кему ретімен:", sandar)
+print("Keму ретімен:", sandar)
 
 # 3. Мәтіндерді сұрыптау (әліпби бойынша)
 esimder = ["Sanzhar", "Arman", "Zere", "Bolat"]
@@ -60,12 +58,12 @@ print("Әліпбимен:", sorted(esimder))
 
 <button class="btn-run" onclick="runCode()">▶ Run Code</button>
 
-<div style="margin-top: 15px; color: #94a3b8; font-size: 14px;">Нәтиже:</div>
-<pre id="output" style="background: #000; color: #22c55e; padding: 15px; border-radius: 8px; min-height: 50px; border: 1px solid #1e293b; font-family: 'Fira Code', monospace;">Нәтиже осында шығады...</pre>
+<div style="margin-top: 15px; color: var(--text-soft); font-size: 14px;">Нәтиже:</div>
+<pre id="output">Нәтиже осында шығады...</pre>
 
-<div class="feature-card" style="margin-top: 30px; border-left: 4px solid #fbbf24; background: rgba(251, 191, 36, 0.05); padding: 15px; border-radius: 8px;">
-    <h4 style="margin-top: 0; color: #fbbf24;">⚠️ Назар аударыңыз:</h4>
-    <p style="margin-bottom: 0;"><code>sort()</code> әдісі тізімнің өзін өзгертеді, ал <code>sorted()</code> функциясы жаңа сұрыпталған тізімді қайтарады (түпнұсқа тізім өзгеріссіз қалады).</p>
+<div class="feature-card" style="margin-top: 30px; border-left: 5px solid var(--warning); background: linear-gradient(180deg, rgba(245, 158, 11, 0.05) 0%, var(--surface) 100%);">
+    <h4 style="color: var(--warning); font-size: 20px; font-weight: 800; margin-bottom: 10px;">⚠️ Назар аударыңыз:</h4>
+    <p style="color: var(--text-main); margin-bottom: 0;"><code>sort()</code> әдісі тізімнің өзін өзгертеді, ал <code>sorted()</code> функциясы жаңа сұрыпталған тізімді қайтарады (түпнұсқа тізім өзгеріссіз қалады).</p>
 </div>
 
 <a href="https://codepen.io/zlreibuh-the-sasster/pen/ogzvzje" 

@@ -4,153 +4,128 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Python оқу сайты</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Прямой путь к стилям для стабильной работы дизайна на Vercel -->
+    <link rel="stylesheet" href="/static/style.css">
     <style>
-        body {
-            margin: 0;
-            display: flex;
-            min-height: 100vh;
-            background: #0f172a;
-            color: white;
-            font-family: sans-serif;
-        }
-
-        .sidebar {
-            width: 280px;
-            background: #1e293b;
-            padding: 20px;
-            border-right: 1px solid #334155;
-            position: fixed;
-            left: 0;
-            top: 0;
-            height: 100vh;
-            overflow-y: auto;
-            transition: transform 0.3s ease;
-            z-index: 1000;
-        }
-
+        /* Дополнительные стили для управления логикой сайдбара и ИИ-окна */
         .sidebar.closed {
             transform: translateX(-100%);
         }
-
-        .content {
-            margin-left: 300px;
-            padding: 40px;
-            flex: 1;
-            max-width: 900px;
-            transition: margin-left 0.3s ease;
-        }
-
         .content.full {
             margin-left: 0;
+            max-width: 100%;
         }
-
-        .sidebar h3 {
-            color: #38bdf8;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #334155;
-            padding-bottom: 10px;
+        #ai-chat-window.hidden {
+            display: none !important;
         }
-
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .sidebar li {
-            margin-bottom: 12px;
-        }
-
-        .sidebar a {
-            color: #cbd5e1;
-            text-decoration: none;
-            transition: 0.3s;
-            display: block;
-            padding: 8px;
-            border-radius: 5px;
-        }
-
-        .sidebar a:hover {
-            background: #334155;
-            color: #38bdf8;
-        }
-
         .menu-toggle {
             position: fixed;
             top: 15px;
             left: 15px;
             z-index: 1001;
-            background: #0284c7;
+            background: var(--primary);
             color: white;
             border: none;
             border-radius: 10px;
             padding: 10px 14px;
             font-size: 24px;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: var(--transition);
         }
-
-        .rating-section {
-            margin-top: 50px;
-            padding: 20px;
-            background: #1e293b;
-            border-radius: 12px;
-            text-align: center;
-            border: 1px solid #334155;
+        .menu-toggle:hover {
+            background: var(--primary-dark);
+            transform: scale(1.05);
         }
-
-        .stars {
-            font-size: 30px;
-            cursor: pointer;
-            color: #475569;
-            transition: 0.2s;
-        }
-
-        .stars:hover,
-        .stars.active {
-            color: #fbbf24;
-        }
-
-        .rating-text {
-            margin-top: 10px;
-            font-size: 14px;
-            color: #94a3b8;
-        }
-
-        .btn-run {
-            margin-top: 15px;
-            padding: 12px 30px;
-            background: linear-gradient(135deg, #22c55e, #16a34a);
+        #ai-toggle-btn {
+            position: fixed;
+            top: 15px;
+            right: 20px;
+            z-index: 1001;
+            background: var(--primary-2);
             color: white;
             border: none;
-            border-radius: 10px;
-            font-size: 16px;
+            border-radius: var(--radius-sm);
+            padding: 10px 16px;
+            font-size: 15px;
             font-weight: bold;
             cursor: pointer;
-            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: var(--transition);
             display: flex;
             align-items: center;
-            gap: 10px;
-            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4);
+            gap: 8px;
         }
-
-        .btn-run:hover {
+        #ai-toggle-btn:hover {
+            background: var(--primary);
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(34, 197, 94, 0.6);
-            filter: brightness(1.1);
         }
-
-        #output {
-            margin-top: 15px;
-            background: #020617;
-            color: #22c55e;
-            padding: 20px;
-            border-radius: 12px;
-            border: 1px solid #1e293b;
-            min-height: 50px;
-            font-family: 'Fira Code', monospace;
-            white-space: pre-wrap;
-            box-shadow: inset 0 2px 10px rgba(0,0,0,0.5);
+        #ai-chat-window {
+            position: fixed;
+            top: 75px;
+            right: 20px;
+            width: 350px;
+            height: 500px;
+            background: var(--surface-strong);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+        #ai-chat-header {
+            background: var(--sidebar-bg);
+            color: white;
+            padding: 14px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #ai-chat-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            background: var(--bg-soft);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        #ai-chat-input-area {
+            display: flex;
+            padding: 12px;
+            background: var(--surface-strong);
+            border-top: 1px solid var(--border);
+            gap: 8px;
+        }
+        #ai-user-input {
+            flex: 1;
+            padding: 10px;
+            background: var(--bg-main);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text-main);
+            font-size: 14px;
+            outline: none;
+        }
+        #ai-user-input:focus {
+            border-color: var(--primary);
+        }
+        #ai-send-btn {
+            background: var(--success);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 14px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: var(--transition);
+        }
+        #ai-send-btn:hover {
+            background: #16a34a;
         }
     </style>
 </head>
@@ -158,99 +133,125 @@
 
     <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
 
-    <aside class="sidebar" id="sidebar">
-        <h3>🐍 Python Курсы</h3>
-        <ul>
-            <li><a href="/">Python деген не?</a></li>
-            <li><a href="/print">🖨 Print командасы</a></li>
-            <li><a href="/variables">📦 Айнымалылар</a></li>
-            <li><a href="/conditions">🔀 Шарттар</a></li>
-            <li><a href="/functions">🧩 Функциялар</a></li>
-            <li><a href="/loops">🔁 Циклдер</a></li>
-            <li><a href="/sorting">📊 Сұрыптау</a></li>
-            <li><a href="/arrays1">📉 Бірөлшемді массив</a></li>
-            <li><a href="/arrays2">📋 Екіөлшемді массив</a></li>
-            <li><a href="/add_remove">➕ Қосу/Жою</a></li>
-        </ul>
-    </aside>
+    <!-- ИИ Көмекші батырмасы -->
+    <button id="ai-toggle-btn" onclick="toggleAIChat()">🤖 AI Көмекші</button>
 
-    <main class="content" id="content">
-        {% block content %}{% endblock %}
-
-        <div class="rating-section">
-            <h4>Сабақ қалай өтті?</h4>
-            <div id="star-container">
-                <span class="stars" onclick="setRating(1)">★</span>
-                <span class="stars" onclick="setRating(2)">★</span>
-                <span class="stars" onclick="setRating(3)">★</span>
-                <span class="stars" onclick="setRating(4)">★</span>
-                <span class="stars" onclick="setRating(5)">★</span>
-            </div>
-            <div id="rating-msg" class="rating-text">Бағаңызды қалдырыңыз</div>
+    <!-- ИИ Чат терезесі -->
+    <div id="ai-chat-window" class="hidden">
+        <div id="ai-chat-header">
+            <span>🐍 Python AI Көмекші</span>
+            <span onclick="toggleAIChat()" style="cursor:pointer; color: var(--text-light); font-size: 18px;">✖</span>
         </div>
-    </main>
+        <div id="ai-chat-messages">
+            <div style="background: var(--primary); color: white; padding: 10px 14px; border-radius: 14px 14px 14px 0; max-width: 85%; align-self: flex-start; font-size: 14px; box-shadow: var(--shadow-sm);">
+                Сәлем! Python бойынша сұрағың болса, қоя бер! 🚀
+            </div>
+        </div>
+        <div id="ai-chat-input-area">
+            <input type="text" id="ai-user-input" placeholder="Сұрағыңызды жазыңыз..." onkeypress="handleAIKeyPress(event)">
+            <button id="ai-send-btn" onclick="sendAIMessage()">▶</button>
+        </div>
+    </div>
 
-    <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+    <div class="container">
+        <!-- Сайдбар навигациясы -->
+        <aside class="sidebar" id="sidebar">
+            <h3>🐍 Python Курсы</h3>
+            <ul>
+                <li><a href="/" id="menu-home">Python деген не?</a></li>
+                <li><a href="/print" id="menu-print">🖨 Print командасы</a></li>
+                <li><a href="/variables" id="menu-variables">📦 Айнымалылар</a></li>
+                <li><a href="/conditions" id="menu-conditions">🔀 Шарттар</a></li>
+                <li><a href="/loops" id="menu-loops">🔁 Циклдер</a></li>
+                <li><a href="/functions" id="menu-functions">🧩 Функциялар</a></li>
+                <li><a href="/sorting" id="menu-sorting">📊 Сұрыптау</a></li>
+                <li><a href="/arrays1" id="menu-arrays1">📉 Бірөлшемді массив</a></li>
+                <li><a href="/arrays2" id="menu-arrays2">🧩 Екіөлшемді массив</a></li>
+                <li><a href="/add_remove" id="menu-add-remove">➕ Элемент қосу/жою</a></li>
+            </ul>
+        </aside>
+
+        <!-- Негізгі контент аймағы -->
+        <main class="content" id="content-area">
+            {% block content %}
+            <!-- Сюда Flask будет автоматически подставлять код ваших уроков -->
+            {% endblock %}
+        </main>
+    </div>
+
+    <!-- СКРИПТТЕР: Сайттың интерактивті қызметі -->
     <script>
+        // Сайдбарды ашу/жабу логикасы
         function toggleSidebar() {
-            document.getElementById("sidebar").classList.toggle("closed");
-            document.getElementById("content").classList.toggle("full");
+            const sidebar = document.getElementById('sidebar');
+            const content = document.getElementById('content-area');
+            sidebar.classList.toggle('closed');
+            content.classList.toggle('full');
         }
 
-        function setRating(n) {
-            const stars = document.querySelectorAll('.stars');
-            const msg = document.getElementById('rating-msg');
-
-            stars.forEach((star, index) => {
-                if (index < n) star.classList.add('active');
-                else star.classList.remove('active');
-            });
-
-            const feedback = ["Нашар", "Орташа", "Жақсы", "Өте жақсы", "Керемет! 🚀"];
-            msg.innerText = "Рақмет! Сіздің бағаңыз: " + feedback[n - 1];
-            msg.style.color = "#38bdf8";
+        // ИИ Чат терезесін ашу/жабу
+        function toggleAIChat() {
+            const chatWindow = document.getElementById('ai-chat-window');
+            chatWindow.classList.toggle('hidden');
         }
 
-        let pyodideInstance = null;
+        // ИИ-ге хабарлама жіберу және жауап алу (OpenRouter интеграциясы)
+        async function sendAIMessage() {
+            const inputElement = document.getElementById('ai-user-input');
+            const messageText = inputElement.value.trim();
+            if (!messageText) return;
 
-        async function getPyodide() {
-            if (!pyodideInstance) {
-                pyodideInstance = await loadPyodide();
-            }
-            return pyodideInstance;
-        }
+            const chatMessages = document.getElementById('ai-chat-messages');
 
-        async function runCode() {
-            const codeArea = document.getElementById("code");
-            const outputArea = document.getElementById("output");
-            const btn = document.querySelector(".btn-run");
+            // Пайдаланушының хабарламасын чатқа қосу
+            const userDiv = document.createElement('div');
+            userDiv.style = "background: var(--surface-strong); color: var(--text-main); padding: 10px 14px; border-radius: 14px 14px 0 14px; max-width: 85%; align-self: flex-end; font-size: 14px; box-shadow: var(--shadow-sm); border: 1px solid var(--border);";
+            userDiv.textContent = messageText;
+            chatMessages.appendChild(userDiv);
+            
+            inputElement.value = '';
+            chatMessages.scrollTop = chatMessages.scrollHeight;
 
-            if (!codeArea || !outputArea || !btn) return;
-
-            btn.disabled = true;
-            btn.innerHTML = "<span>⌛ Жүктелуде...</span>";
-            outputArea.innerText = "Код орындалуда...";
+            // Жауап күту анимациясы
+            const loadingDiv = document.createElement('div');
+            loadingDiv.style = "background: var(--primary); color: white; padding: 10px 14px; border-radius: 14px 14px 14px 0; max-width: 85%; align-self: flex-start; font-size: 14px; opacity: 0.7;";
+            loadingDiv.textContent = "Ойланып жатырмын... 🧠";
+            chatMessages.appendChild(loadingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
 
             try {
-                const pyodide = await getPyodide();
-                await pyodide.runPythonAsync(`
-import sys
-from io import StringIO
-sys.stdout = StringIO()
-                `);
-                await pyodide.runPythonAsync(codeArea.value);
-                const stdout = pyodide.runPython("sys.stdout.getvalue()");
-                outputArea.innerText = stdout || "Код орындалды (нәтиже бос)";
-                outputArea.style.color = "#22c55e";
-            } catch (err) {
-                outputArea.innerText = "Қате: " + err;
-                outputArea.style.color = "#ef4444";
-            } finally {
-                btn.disabled = false;
-                btn.innerHTML = "▶ Run Code";
+                // Flask бэкендіне (app.py) сұраныс жіберу
+                const response = await fetch('/ask-ai', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: messageText })
+                });
+                const data = await response.json();
+                
+                chatMessages.removeChild(loadingDiv);
+
+                // ИИ жауабын чатқа шығару
+                const aiDiv = document.createElement('div');
+                aiDiv.style = "background: var(--primary); color: white; padding: 10px 14px; border-radius: 14px 14px 14px 0; max-width: 85%; align-self: flex-start; font-size: 14px; box-shadow: var(--shadow-sm);";
+                aiDiv.innerHTML = data.reply ? data.reply.replace(/\n/g, '<br>') : "Қате орын алды.";
+                chatMessages.appendChild(aiDiv);
+
+            } catch (error) {
+                if (chatMessages.contains(loadingDiv)) {
+                    chatMessages.removeChild(loadingDiv);
+                }
+                const errorDiv = document.createElement('div');
+                errorDiv.style = "background: var(--danger); color: white; padding: 10px 14px; border-radius: 14px 14px 14px 0; max-width: 85%; align-self: flex-start; font-size: 14px;";
+                errorDiv.textContent = "Байланыс қатесі орын алды.";
+                chatMessages.appendChild(errorDiv);
+            }
+
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function handleAIKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendAIMessage();
             }
         }
-    </script>
 
-</body>
-</html>

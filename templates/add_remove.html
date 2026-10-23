@@ -3,9 +3,8 @@
 
 <h1>➕➖ Элемент қосу және жою</h1>
 
-<div class="video-wrapper" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-bottom: 25px; border-radius: 15px; background: #1e293b;">
+<div class="video-wrapper">
     <iframe 
-        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
         src="https://www.youtube.com/embed/cFJfbB80S3k" 
         allowfullscreen>
     </iframe>
@@ -15,22 +14,20 @@
     Python-да тізімдер <b>динамикалық</b> болып табылады. Бұл дегеніміз — бағдарлама жұмыс істеп тұрған кезде тізімге жаңа мән қосуға немесе барын өшіріп тастауға болады.
 </p>
 
-
-
 <hr>
 
-<h3>🛠 Негізгі әдістер (Methods)</h3>
+<h2>🛠 Негізгі әдістер (Methods)</h2>
 
-<div class="card-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 30px;">
-    <div class="feature-card" style="padding: 15px; background: rgba(34, 197, 94, 0.1); border-radius: 12px; border: 1px solid #22c55e;">
-        <h4 style="color: #22c55e; margin-top: 0;">Қосу (Adding)</h4>
+<div class="feature-grid">
+    <div class="feature-card" style="border-left: 5px solid var(--success); background: linear-gradient(180deg, rgba(22, 163, 74, 0.08) 0%, var(--surface) 100%);">
+        <h4 style="color: var(--success); font-size: 20px; font-weight: 800; margin-bottom: 10px;">Қосу (Adding)</h4>
         <ul>
             <li><code>append(x)</code> — соңына қосады.</li>
             <li><code>insert(i, x)</code> — i-ші индекске қосады.</li>
         </ul>
     </div>
-    <div class="feature-card" style="padding: 15px; background: rgba(239, 68, 68, 0.1); border-radius: 12px; border: 1px solid #ef4444;">
-        <h4 style="color: #ef4444; margin-top: 0;">Жою (Removing)</h4>
+    <div class="feature-card" style="border-left: 5px solid var(--danger); background: linear-gradient(180deg, rgba(239, 68, 68, 0.08) 0%, var(--surface) 100%);">
+        <h4 style="color: var(--danger); font-size: 20px; font-weight: 800; margin-bottom: 10px;">Жою (Removing)</h4>
         <ul>
             <li><code>remove(x)</code> — мәні х-ке тең бірінші элементті өшіреді.</li>
             <li><code>pop(i)</code> — i-ші индекстегі элементті өшіріп, оны қайтарады.</li>
@@ -40,11 +37,11 @@
 
 <hr>
 
-<h3>🧪 Тәжірибелік алаң (Sandbox)</h3>
+<h2>🧪 Тәжірибелік алаң (Sandbox)</h2>
 <p>Тізімді қалай өзгертуге болатынын тексеріп көр:</p>
 
-<div class="editor-container" style="margin-bottom: 15px;">
-    <textarea id="code" rows="12" style="width:100%; background: #0f172a; color: #f8fafc; padding: 15px; border-radius: 8px; border: 1px solid #334155; font-family: 'Fira Code', monospace;">
+<div class="editor-container">
+    <textarea id="code" rows="12">
 # Бастапқы тізім
 оқушылар = ["Али", "Сара", "Марат"]
 print("Бастапқы:", оқушылар)
@@ -66,11 +63,11 @@ print("Қорытынды тізім:", оқушылар)
 
 <button class="btn-run" onclick="runCode()">▶ Run Code</button>
 
-<div style="margin-top: 15px; color: #94a3b8; font-size: 14px;">Нәтиже (Output):</div>
-<pre id="output" style="background: #000; color: #22c55e; padding: 15px; border-radius: 8px; min-height: 50px; border: 1px solid #1e293b; font-family: 'Fira Code', monospace;">Нәтиже осында шығады...</pre>
+<div style="margin-top: 15px; color: var(--text-soft); font-size: 14px;">Нәтиже (Output):</div>
+<pre id="output">Нәтиже осында шығады...</pre>
 
-<div class="feature-card" style="margin-top: 30px; border-left: 4px solid #38bdf8; background: rgba(56, 189, 248, 0.05); padding: 15px; border-radius: 8px;">
-    <h4 style="margin-top: 0; color: #38bdf8;">💡 Есіңде сақта:</h4>
+<div class="feature-card" style="margin-top: 30px; border-left: 5px solid var(--primary-2); background: linear-gradient(180deg, rgba(0, 166, 251, 0.08) 0%, var(--surface) 100%);">
+    <h4 style="color: var(--primary-2); font-size: 20px; font-weight: 800; margin-bottom: 10px;">💡 Есіңде сақта:</h4>
     <p style="margin-bottom: 0;"><code>remove()</code> мән бойынша іздеп өшіреді, ал <code>pop()</code> индекс бойынша (орны бойынша) өшіреді.</p>
 </div>
 

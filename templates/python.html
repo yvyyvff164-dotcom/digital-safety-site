@@ -1,8 +1,175 @@
 {% extends "base.html" %}
+
+{% block title %}Python бағдарламалау тіліне кіріспе — Python оқу сайты{% endblock %}
+
 {% block content %}
+<style>
+    /* ==========================================
+       Басты бетке арналған ерекше стилизация
+    ========================================== */
+    .hero-title {
+        font-size: 2.5rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 15px;
+        line-height: 1.2;
+    }
 
-<h1>🚀 Python бағдарламалау тіліне кіріспе</h1>
+    .hero-subtitle {
+        font-size: 1.15rem;
+        color: var(--text-light);
+        margin-bottom: 25px;
+        line-height: 1.6;
+    }
 
+    /* YouTube видеосын бейімдеу */
+    .video-wrapper {
+        position: relative;
+        width: 100%;
+        padding-bottom: 56.25%; /* 16:9 пропорция */
+        height: 0;
+        background: #000;
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        box-shadow: var(--shadow-lg);
+        margin-bottom: 35px;
+    }
+
+    .video-wrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+
+    /* Карточкалар торы (Feature Grid) */
+    .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 20px;
+        margin: 25px 0;
+    }
+
+    .feature-card {
+        background: var(--surface-strong);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        padding: 22px;
+        box-shadow: var(--shadow-sm);
+        transition: var(--transition-smooth);
+        color: var(--text-main);
+    }
+
+    .feature-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+        border-color: var(--primary);
+    }
+
+    /* Әр бағытқа арналған ерекше жиектер (Borders) */
+    .card-primary { border-left: 5px solid var(--primary-2); }
+    .card-success { border-left: 5px solid var(--success); }
+    .card-warning { border-left: 5px solid #f59e0b; }
+    .card-info    { border-left: 5px solid var(--primary); }
+
+    .feature-card h3 {
+        margin-top: 0;
+        margin-bottom: 10px;
+        font-size: 1.2rem;
+        font-weight: 700;
+    }
+
+    .feature-card p {
+        color: var(--text-main);
+        margin-bottom: 0;
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    /* Код редакторы мен Sandbox */
+    .editor-container {
+        margin-top: 15px;
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow-sm);
+    }
+
+    #code {
+        width: 100%;
+        background: #0f172a;
+        color: #38bdf8;
+        font-family: 'Fira Code', Consolas, Monaco, monospace;
+        font-size: 14px;
+        padding: 16px;
+        border: none;
+        outline: none;
+        resize: vertical;
+        line-height: 1.5;
+    }
+
+    .btn-run {
+        margin-top: 15px;
+        background: linear-gradient(135deg, #22c55e, #16a34a);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 15px;
+        font-weight: 600;
+        border-radius: var(--radius-sm);
+        cursor: pointer;
+        box-shadow: 0 4px 14px rgba(34, 197, 94, 0.35);
+        transition: var(--transition-smooth);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .btn-run:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(34, 197, 94, 0.5);
+    }
+
+    #output {
+        background: #0f172a;
+        color: #22c55e;
+        padding: 16px;
+        border-radius: var(--radius-md);
+        font-family: 'Fira Code', Consolas, monospace;
+        font-size: 14px;
+        min-height: 60px;
+        margin-top: 8px;
+        border: 1px solid #334155;
+        white-space: pre-wrap;
+    }
+
+    hr {
+        border: none;
+        height: 1px;
+        background: var(--border);
+        margin: 35px 0;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--text-main);
+        margin-top: 30px;
+        margin-bottom: 15px;
+    }
+</style>
+
+<!-- Герой секция -->
+<h1 class="hero-title">🚀 Python бағдарламалау тіліне қош келдіңіз!</h1>
+<p class="hero-subtitle">
+    <strong>Python</strong> — әлемдегі ең танымал, қуатты әрі үйренуге ең оңай бағдарламалау тілі. Оның көмегімен қарапайым есептеулерден бастап күрделі жасанды интеллект жүйелерін және ойындарды жасауға болады.
+</p>
+
+<!-- Бейне сабақ -->
 <div class="video-wrapper">
     <iframe 
         src="https://www.youtube.com/embed/SqrVSgATmrU" 
@@ -12,48 +179,73 @@
     </iframe>
 </div>
 
-<p>
-    <strong>Python</strong> — бұл әлемдегі ең танымал, жоғары деңгейлі бағдарламалау тілі. 
-    Оның синтаксисі адам тіліне (ағылшын тіліне) өте жақын, сондықтан оны үйрену жаңа бастағандар үшін өте жеңіл.
-</p>
+<!-- Негізгі бағыттар торы -->
+<h2>🎯 Python қай салаларда қолданылады?</h2>
+<div class="feature-grid">
+    <div class="feature-card card-primary">
+        <h3 style="color: var(--primary-2);">🌐 Веб-әзірлеу (Web Development)</h3>
+        <p>Instagram, Pinterest, Spotify және Dropbox сияқты әлемдік сервистердің серверлік бөлігі Python (Django/Flask) арқылы жасалған.</p>
+    </div>
+    
+    <div class="feature-card card-success">
+        <h3 style="color: var(--success);">🤖 Жасанды интеллект (AI & Machine Learning)</h3>
+        <p>ChatGPT, Tesla автопилоты, Google Translate және бетті тану жүйелері толығымен Python-ның деректерді өңдеу алгоритмдеріне сүйенеді.</p>
+    </div>
+    
+    <div class="feature-card card-warning">
+        <h3 style="color: var(--warning);">🎮 Ойындар мен Қолданбалар</h3>
+        <p>PyGame кітапханасы арқылы 2D ойындарды жасауға, ал автоматтандыру скрипттері арқылы күнделікті рутинды жұмыстарды жеңілдетуге болады.</p>
+    </div>
+</div>
 
-<!-- Переключено на ваш глобальный класс .feature-grid -->
-<div class="feature-grid" style="margin-top: 30px;">
-    <div class="feature-card" style="border-left: 5px solid var(--primary-2); background: linear-gradient(180deg, rgba(0, 166, 251, 0.05) 0%, var(--surface) 100%);">
-        <h3 style="color: var(--primary-2); margin-top: 0; font-weight: 800;">🌐 Веб-әзірлеу</h3>
-        <p style="color: var(--text-main); margin-bottom: 0;">Instagram, Pinterest және Dropbox сияқты ірі сервистер Python (Django/Flask) арқылы жасалған.</p>
+<hr>
+
+<!-- Python ерекшеліктері -->
+<h2>💡 Неліктен дәл Python таңдау керек?</h2>
+<div class="feature-grid">
+    <div class="feature-card card-info">
+        <h3 style="color: var(--primary);">📖 Оқылуы оңай (Human-like)</h3>
+        <p>Код кәдімгі ағылшын тіліне ұқсайды. Басқа тілдердегідей артық жақшалар мен нүктелі үтірлерді (<code>;</code>) жазу міндетті емес.</p>
     </div>
-    <div class="feature-card" style="border-left: 5px solid var(--success); background: linear-gradient(180deg, rgba(22, 163, 74, 0.05) 0%, var(--surface) 100%);">
-        <h3 style="color: var(--success); margin-top: 0; font-weight: 800;">🤖 Жасанды интеллект</h3>
-        <p style="color: var(--text-main); margin-bottom: 0;">ChatGPT, Tesla автопилоты және бетті тану жүйелері Python-ның көмегімен жұмыс істейді.</p>
-    </div>
-    <div class="feature-card" style="border-left: 5px solid var(--warning); background: linear-gradient(180deg, rgba(245, 158, 11, 0.05) 0%, var(--surface) 100%);">
-        <h3 style="color: var(--warning); margin-top: 0; font-weight: 800;">🎮 Ойындар жасау</h3>
-        <p style="color: var(--text-main); margin-bottom: 0;">PyGame кітапханасы арқылы қарапайым әрі қызықты 2D ойындарды тез құрастыруға болады.</p>
+    
+    <div class="feature-card card-info">
+        <h3 style="color: var(--primary);">🌍 Үлкен қауымдастық (Community)</h3>
+        <p>Әлем бойынша миллиондаған әзірлеушілер қолданады. Кез келген сұраққа немесе қатеге Интернеттен бірден шешім таба аласыз.</p>
     </div>
 </div>
 
 <hr>
 
 <h2>💻 Алғашқы қадам: Hello World</h2>
-<p>Python-да жұмыс істеудің қаншалықты оңай екенін тексеріп көр. Төмендегі кодты іске қос:</p>
+<p>Python-да бағдарлама жазудың қаншалықты оңай екенін қазір көріңіз. Төмендегі кодты іске қосып көріңіз:</p>
 
 <div class="editor-container">
     <textarea id="code" rows="5">
 # Бұл сенің алғашқы кодың!
 print("Сәлем, Әлем!")
-print("Мен Python үйреніп жатырмын 🚀")
+print("Мен Python бағдарламалау тілін үйреніп жатырмын! 🚀")
     </textarea>
 </div>
 
 <button class="btn-run" onclick="runCode()">▶ Кодты жіберу</button>
 
-<div style="margin-top: 15px; color: var(--text-soft); font-size: 14px;">Консоль нәтижесі:</div>
+<div style="margin-top: 15px; color: var(--text-light); font-size: 14px; font-weight: 500;">Консоль нәтижесі:</div>
 <pre id="output">Нәтиже осында шығады...</pre>
 
-<div class="feature-card" style="margin-top: 30px; border-left: 5px solid var(--primary); background: linear-gradient(180deg, rgba(15, 98, 254, 0.05) 0%, var(--surface) 100%);">
-    <h4 style="color: var(--primary); font-size: 20px; font-weight: 800; margin-bottom: 10px;">📘 Неден бастау керек?</h4>
-    <p style="margin-bottom: 0; color: var(--text-main);">Сол жақтағы мәзірден (Sidebar) <b>Print</b> сабағына өтіп, Python-ның негізгі командаларын үйренуді баста!</p>
+<!-- Нұсқаулық блок -->
+<div class="feature-card card-info" style="margin-top: 35px;">
+    <h4 style="color: var(--primary); font-size: 1.15rem; font-weight: 800; margin-top: 0; margin-bottom: 8px;">📘 Оқуды неден бастау керек?</h4>
+    <p style="margin-bottom: 0;">Сол жақтағы сайдбар мәзірінен <b>🖨 Print командасы</b> бөліміне өтіп, Python-ның алғашқы командаларын үйренуді кезең-кезеңімен бастаңыз!</p>
 </div>
+
+<script>
+    function runCode() {
+        const output = document.getElementById('output');
+        output.textContent = "Код орындалуда...";
+        setTimeout(() => {
+            output.textContent = "Сәлем, Әлем!\nМен Python бағдарламалау тілін үйреніп жатырмын! 🚀";
+        }, 400);
+    }
+</script>
 
 {% endblock %}

@@ -42,6 +42,11 @@ def conditions():
 def functions():
     return render_template("functions.html")
 
+# 🛠️ Жаңадан қосылған "Өз функцияларың" бетінің маршруты
+@app.route("/custom-functions")
+def custom_functions():
+    return render_template("custom_functions.html")
+
 @app.route("/sorting")
 def sorting():
     return render_template("sorting.html")
@@ -62,8 +67,8 @@ def add_remove():
 def loops():
     return render_template("loops.html")
 
-# --- МАРШРУТ: Прием вопросов к ИИ ---
-@app.route("/ask-ai", methods=["POST"])
+# --- МАРШРУТ: Прием вопросов к ИИ ( /api/chat фронтендке сәйкестендірілді ) ---
+@app.route("/api/chat", methods=["POST"])
 def ask_ai():
     data = request.get_json()
     user_message = data.get("message", "")
@@ -72,7 +77,7 @@ def ask_ai():
         return jsonify({"error": "Пустой запрос"}), 400
 
     if not OPENROUTER_API_KEY:
-        return jsonify({"reply": "Ошибка: Ключ API не настроен в Environment Variables на Vercel"}), 500
+        return jsonify({"response": "Ошибка: Ключ API не настроен в Environment Variables на Vercel"}), 500
 
     try:
         response = requests.post(
@@ -102,17 +107,17 @@ def ask_ai():
 
         if "choices" in result and len(result["choices"]) > 0:
             ai_reply = result["choices"][0]["message"]["content"]
-            return jsonify({"reply": ai_reply})
+            return jsonify({"response": ai_reply})
         elif "error" in result:
             error_msg = result["error"].get("message", "Неизвестная ошибка")
             print(f"❌ Ошибка OpenRouter API: {error_msg}")
-            return jsonify({"reply": f"Ошибка ИИ: {error_msg}"})
+            return jsonify({"response": f"Ошибка ИИ: {error_msg}"})
         else:
-            return jsonify({"reply": "ИИ не смог сформировать ответ."})
+            return jsonify({"response": "ИИ не смог сформировать ответ."})
 
     except Exception as e:
         print(f"❌ Ошибка при отправке запроса: {e}")
-        return jsonify({"reply": f"Ошибка соединения с ИИ: {str(e)}"}), 500
+        return jsonify({"response": f"Ошибка соединения с ИИ: {str(e)}"}), 500
 
 if __name__ == "__main__":
     app.run(debug=True)

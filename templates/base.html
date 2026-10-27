@@ -3,69 +3,215 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Python оқу сайты</title>
+    <title>{% block title %}Python оқу сайты{% endblock %}</title>
+    
     <!-- Прямой путь к стилям для стабильной работы дизайна на Vercel -->
     <link rel="stylesheet" href="/static/style.css">
+    
     <style>
-        /* Дополнительные стили для управления логикой сайдбара и ИИ-окна */
+        /* ==========================================
+           CSS Айнымалылары мен Базалық Баптаулар
+        ========================================== */
+        :root {
+            --primary: #3b82f6;
+            --primary-dark: #1d4ed8;
+            --primary-2: #8b5cf6;
+            --sidebar-bg: #1e293b;
+            --sidebar-hover: #334155;
+            --sidebar-active: #2563eb;
+            --bg-main: #f8fafc;
+            --bg-soft: #f1f5f9;
+            --surface-strong: #ffffff;
+            --text-main: #0f172a;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --success: #22c55e;
+            --radius-md: 12px;
+            --radius-sm: 8px;
+            --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+            --transition-smooth: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        /* ==========================================
+           Плавный & Анимированный Sidebar (Сайдбар)
+        ========================================== */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 280px;
+            height: 100vh;
+            background: var(--sidebar-bg);
+            color: #ffffff;
+            z-index: 1000;
+            box-shadow: 4px 0 25px rgba(0, 0, 0, 0.15);
+            transition: var(--transition-smooth);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            padding-top: 70px;
+        }
+
+        /* Сайдбар жабылғанда солға сырғу анимациясы */
         .sidebar.closed {
             transform: translateX(-100%);
+            box-shadow: none;
         }
+
+        .sidebar h3 {
+            padding: 0 24px 15px 24px;
+            margin: 0;
+            font-size: 1.25rem;
+            color: #38bdf8;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 15px 12px;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .sidebar ul li a {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            color: #94a3b8;
+            text-decoration: none;
+            border-radius: var(--radius-sm);
+            font-size: 15px;
+            font-weight: 500;
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+
+        /* Меню элементтеріне меңзерді апарғандағы анимация */
+        .sidebar ul li a:hover {
+            color: #ffffff;
+            background: var(--sidebar-hover);
+            transform: translateX(6px);
+        }
+
+        /* Белсенді сілтеме стильдері */
+        .sidebar ul li a.active {
+            background: var(--sidebar-active);
+            color: #ffffff;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+
+        /* ==========================================
+           Контент Аймағының Анимациясы
+        ========================================== */
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .content {
+            flex: 1;
+            margin-left: 280px;
+            padding: 90px 40px 40px 40px;
+            transition: var(--transition-smooth);
+            max-width: calc(100% - 280px);
+        }
+
         .content.full {
             margin-left: 0;
             max-width: 100%;
         }
-        #ai-chat-window.hidden {
-            display: none !important;
+
+        /* Мобильді экрандарға арналған оверлей */
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
+            z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition-smooth);
         }
+
+        .sidebar-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* ==========================================
+           Батырмалар мен AI Чат Терезесі
+        ========================================== */
         .menu-toggle {
             position: fixed;
             top: 15px;
-            left: 15px;
+            left: 20px;
             z-index: 1001;
             background: var(--primary);
             color: white;
             border: none;
-            border-radius: 10px;
+            border-radius: var(--radius-sm);
             padding: 10px 14px;
-            font-size: 24px;
+            font-size: 20px;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            transition: var(--transition);
+            box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
+            transition: var(--transition-smooth);
         }
+
         .menu-toggle:hover {
             background: var(--primary-dark);
             transform: scale(1.05);
         }
+
         #ai-toggle-btn {
             position: fixed;
             top: 15px;
             right: 20px;
             z-index: 1001;
-            background: var(--primary-2);
+            background: linear-gradient(135deg, var(--primary), var(--primary-2));
             color: white;
             border: none;
             border-radius: var(--radius-sm);
-            padding: 10px 16px;
+            padding: 10px 18px;
             font-size: 15px;
-            font-weight: bold;
+            font-weight: 600;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            transition: var(--transition);
+            box-shadow: 0 4px 14px rgba(139, 92, 246, 0.35);
+            transition: var(--transition-smooth);
             display: flex;
             align-items: center;
             gap: 8px;
         }
+
         #ai-toggle-btn:hover {
-            background: var(--primary);
             transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.5);
         }
+
         #ai-chat-window {
             position: fixed;
             top: 75px;
             right: 20px;
-            width: 350px;
-            height: 500px;
+            width: 360px;
+            height: 520px;
             background: var(--surface-strong);
             border: 1px solid var(--border);
             border-radius: var(--radius-md);
@@ -74,17 +220,26 @@
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            transition: var(--transition);
+            transition: var(--transition-smooth);
+            transform-origin: top right;
         }
+
+        #ai-chat-window.hidden {
+            opacity: 0;
+            transform: scale(0.9) translateY(-20px);
+            pointer-events: none;
+        }
+
         #ai-chat-header {
             background: var(--sidebar-bg);
             color: white;
-            padding: 14px;
+            padding: 14px 18px;
             font-weight: bold;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
+
         #ai-chat-messages {
             flex: 1;
             padding: 15px;
@@ -92,8 +247,9 @@
             background: var(--bg-soft);
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
         }
+
         #ai-chat-input-area {
             display: flex;
             padding: 12px;
@@ -101,40 +257,71 @@
             border-top: 1px solid var(--border);
             gap: 8px;
         }
+
         #ai-user-input {
             flex: 1;
-            padding: 10px;
+            padding: 10px 14px;
             background: var(--bg-main);
             border: 1px solid var(--border);
-            border-radius: 10px;
+            border-radius: var(--radius-sm);
             color: var(--text-main);
             font-size: 14px;
             outline: none;
+            transition: var(--transition-smooth);
         }
+
         #ai-user-input:focus {
             border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
         }
+
         #ai-send-btn {
             background: var(--success);
             color: white;
             border: none;
-            border-radius: 8px;
-            padding: 10px 14px;
+            border-radius: var(--radius-sm);
+            padding: 10px 16px;
             cursor: pointer;
             font-weight: bold;
-            transition: var(--transition);
+            transition: var(--transition-smooth);
         }
+
         #ai-send-btn:hover {
             background: #16a34a;
+            transform: scale(1.05);
+        }
+
+        /* Адаптив дизайн (Мобильді экрандар) */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            .content {
+                margin-left: 0;
+                max-width: 100%;
+                padding: 80px 20px 20px 20px;
+            }
+            #ai-chat-window {
+                width: calc(100vw - 40px);
+                right: 20px;
+                left: 20px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+    <!-- Меню ашу/жабу батырмасы -->
+    <button class="menu-toggle" onclick="toggleSidebar()" aria-label="Менюді ашу">☰</button>
 
     <!-- ИИ Көмекші батырмасы -->
     <button id="ai-toggle-btn" onclick="toggleAIChat()">🤖 AI Көмекші</button>
+
+    <!-- Мобильді Оверлей -->
+    <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
 
     <!-- ИИ Чат терезесі -->
     <div id="ai-chat-window" class="hidden">
@@ -164,6 +351,7 @@
                 <li><a href="/conditions" id="menu-conditions">🔀 Шарттар</a></li>
                 <li><a href="/loops" id="menu-loops">🔁 Циклдер</a></li>
                 <li><a href="/functions" id="menu-functions">🧩 Функциялар</a></li>
+                <li><a href="/custom-functions" id="menu-custom-functions">🛠️ Өз функцияларың (def)</a></li>
                 <li><a href="/sorting" id="menu-sorting">📊 Сұрыптау</a></li>
                 <li><a href="/arrays1" id="menu-arrays1">📉 Бірөлшемді массив</a></li>
                 <li><a href="/arrays2" id="menu-arrays2">🧩 Екіөлшемді массив</a></li>
@@ -179,14 +367,33 @@
         </main>
     </div>
 
-    <!-- СКРИПТТЕР: Сайттың интерактивті қызметі -->
+    <!-- СКРИПТТЕР: Интерактивті қызмет -->
     <script>
-        // Сайдбарды ашу/жабу логикасы
+        // Ағымдағы бетті танып, меню сілтемесін белсенді (active) ету
+        document.addEventListener("DOMContentLoaded", () => {
+            const currentPath = window.location.pathname;
+            const menuLinks = document.querySelectorAll('.sidebar ul li a');
+            menuLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPath) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Сайдбарды плавный ашу/жабу логикасы
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             const content = document.getElementById('content-area');
-            sidebar.classList.toggle('closed');
-            content.classList.toggle('full');
+            const overlay = document.getElementById('sidebar-overlay');
+            
+            // Экран өлшемін тексеру
+            if (window.innerWidth <= 768) {
+                sidebar.classList.toggle('open');
+                overlay.classList.toggle('active');
+            } else {
+                sidebar.classList.toggle('closed');
+                content.classList.toggle('full');
+            }
         }
 
         // ИИ Чат терезесін ашу/жабу
@@ -195,7 +402,14 @@
             chatWindow.classList.toggle('hidden');
         }
 
-        // ИИ-ге хабарлама жіберу және жауап алу (OpenRouter интеграциясы)
+        // Enter пернесін басуды өңдеу
+        function handleAIKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendAIMessage();
+            }
+        }
+
+        // ИИ-ге хабарлама жіберу және жауап алу
         async function sendAIMessage() {
             const inputElement = document.getElementById('ai-user-input');
             const messageText = inputElement.value.trim();
@@ -203,55 +417,45 @@
 
             const chatMessages = document.getElementById('ai-chat-messages');
 
-            // Пайдаланушының хабарламасын чатқа қосу
+            // Пайдаланушы хабарламасы
             const userDiv = document.createElement('div');
-            userDiv.style = "background: var(--surface-strong); color: var(--text-main); padding: 10px 14px; border-radius: 14px 14px 0 14px; max-width: 85%; align-self: flex-end; font-size: 14px; box-shadow: var(--shadow-sm); border: 1px solid var(--border);";
+            userDiv.style = "background: var(--surface-strong); color: var(--text-main); padding: 10px 14px; border-radius: 14px 14px 0 14px; max-width: 85%; align-self: flex-end; font-size: 14px; box-shadow: var(--shadow-sm); border: 1px solid var(--border); word-wrap: break-word;";
             userDiv.textContent = messageText;
             chatMessages.appendChild(userDiv);
             
             inputElement.value = '';
             chatMessages.scrollTop = chatMessages.scrollHeight;
 
-            // Жауап күту анимациясы
+            // Жауап күту индикаторы
             const loadingDiv = document.createElement('div');
-            loadingDiv.style = "background: var(--primary); color: white; padding: 10px 14px; border-radius: 14px 14px 14px 0; max-width: 85%; align-self: flex-start; font-size: 14px; opacity: 0.7;";
+            loadingDiv.style = "background: var(--primary); color: white; padding: 10px 14px; border-radius: 14px 14px 14px 0; max-width: 85%; align-self: flex-start; font-size: 14px; opacity: 0.8;";
             loadingDiv.textContent = "Ойланып жатырмын... 🧠";
             chatMessages.appendChild(loadingDiv);
             chatMessages.scrollTop = chatMessages.scrollHeight;
 
             try {
-                // Flask бэкендіне (app.py) сұраныс жіберу
-                const response = await fetch('/ask-ai', {
+                const response = await fetch('/api/chat', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ message: messageText })
                 });
-                const data = await response.json();
                 
+                const data = await response.json();
                 chatMessages.removeChild(loadingDiv);
 
-                // ИИ жауабын чатқа шығару
                 const aiDiv = document.createElement('div');
-                aiDiv.style = "background: var(--primary); color: white; padding: 10px 14px; border-radius: 14px 14px 14px 0; max-width: 85%; align-self: flex-start; font-size: 14px; box-shadow: var(--shadow-sm);";
-                aiDiv.innerHTML = data.reply ? data.reply.replace(/\n/g, '<br>') : "Қате орын алды.";
+                aiDiv.style = "background: var(--primary); color: white; padding: 10px 14px; border-radius: 14px 14px 14px 0; max-width: 85%; align-self: flex-start; font-size: 14px; box-shadow: var(--shadow-sm); word-wrap: break-word;";
+                aiDiv.textContent = data.response || "Қате орын алды.";
                 chatMessages.appendChild(aiDiv);
-
             } catch (error) {
-                if (chatMessages.contains(loadingDiv)) {
-                    chatMessages.removeChild(loadingDiv);
-                }
+                chatMessages.removeChild(loadingDiv);
                 const errorDiv = document.createElement('div');
-                errorDiv.style = "background: var(--danger); color: white; padding: 10px 14px; border-radius: 14px 14px 14px 0; max-width: 85%; align-self: flex-start; font-size: 14px;";
-                errorDiv.textContent = "Байланыс қатесі орын алды.";
+                errorDiv.style = "background: #ef4444; color: white; padding: 10px 14px; border-radius: 14px 14px 14px 0; max-width: 85%; align-self: flex-start; font-size: 14px;";
+                errorDiv.textContent = "Серверге қосылу мүмкін болмады. Қайталап көріңіз.";
                 chatMessages.appendChild(errorDiv);
             }
-
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
-
-        function handleAIKeyPress(event) {
-            if (event.key === 'Enter') {
-                sendAIMessage();
-            }
-        }
-
+    </script>
+</body>
+</html>

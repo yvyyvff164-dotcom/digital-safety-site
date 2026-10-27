@@ -1,0 +1,236 @@
+{% extends "base.html" %}
+
+{% block title %}Өз функцияларың (def) - Python оқу сайты{% endblock %}
+
+{% block content %}
+<style>
+    /* ==========================================
+       Бетке арналған қосымша стилизация
+    ========================================== */
+    .lesson-title {
+        font-size: 2rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 20px;
+    }
+
+    /* YouTube видеосын бейімдеу (Responsive iframe) */
+    .video-wrapper {
+        position: relative;
+        width: 100%;
+        padding-bottom: 56.25%; /* 16:9 пропорция */
+        height: 0;
+        background: #000;
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        box-shadow: var(--shadow-lg);
+        margin-bottom: 30px;
+    }
+
+    .video-wrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+
+    /* Карточкалар торы (Feature Grid) */
+    .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 20px;
+        margin: 25px 0;
+    }
+
+    .feature-card {
+        background: var(--surface-strong);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        padding: 20px;
+        box-shadow: var(--shadow-sm);
+        transition: var(--transition-smooth);
+        color: var(--text-main);
+    }
+
+    .feature-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+        border-color: var(--primary);
+    }
+
+    .feature-card b {
+        color: var(--primary);
+        font-size: 1.1rem;
+    }
+
+    /* Код редакторы мен Sandbox стилі */
+    .editor-container {
+        margin-top: 15px;
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow-sm);
+    }
+
+    #code {
+        width: 100%;
+        background: #0f172a;
+        color: #38bdf8;
+        font-family: 'Fira Code', Consolas, Monaco, monospace;
+        font-size: 14px;
+        padding: 16px;
+        border: none;
+        outline: none;
+        resize: vertical;
+        line-height: 1.5;
+    }
+
+    .btn-run {
+        margin-top: 15px;
+        background: linear-gradient(135deg, #22c55e, #16a34a);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 15px;
+        font-weight: 600;
+        border-radius: var(--radius-sm);
+        cursor: pointer;
+        box-shadow: 0 4px 14px rgba(34, 197, 94, 0.35);
+        transition: var(--transition-smooth);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .btn-run:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(34, 197, 94, 0.5);
+    }
+
+    #output {
+        background: #0f172a;
+        color: #22c55e;
+        padding: 16px;
+        border-radius: var(--radius-md);
+        font-family: 'Fira Code', Consolas, monospace;
+        font-size: 14px;
+        min-height: 60px;
+        margin-top: 8px;
+        border: 1px solid #334155;
+        white-space: pre-wrap;
+    }
+
+    /* Маңызды ереже блогы (Мәтіні қап-қараңғы фонмен анық көрінетін етіп түзелді) */
+    .tip-card {
+        margin-top: 35px;
+        border-left: 5px solid var(--primary-2);
+        background: var(--surface-strong);
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow-sm);
+        color: var(--text-main);
+    }
+
+    .tip-card h4 {
+        color: var(--primary-2);
+        margin-top: 0;
+        margin-bottom: 8px;
+    }
+
+    hr {
+        border: none;
+        height: 1px;
+        background: var(--border);
+        margin: 30px 0;
+    }
+
+    p {
+        line-height: 1.6;
+        color: var(--text-main);
+    }
+</style>
+
+<h1 class="lesson-title">🛠️ Өз функцияларыңыз (Custom Functions)</h1>
+
+<div class="video-wrapper">
+    <iframe 
+        src="https://www.youtube.com/embed/DJAlfolEv9A" 
+        title="Python өз функцияларын құру"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+    </iframe>
+</div>
+
+<p>
+    Өз функцияларыңызды құру — бұл кодты қайталамаудың ең жақсы жолы. <code>def</code> (define) операторы арқылы сіз бағдарламаға жаңа команда үйретесіз, ал ол команданы кодтың кез келген жерінде бір жолмен шақыра аласыз.
+</p>
+
+<hr>
+
+<h2>📚 Өз функциямызды қалай құрамыз?</h2>
+
+<div class="feature-grid">
+    <div class="feature-card">
+        <b>1. def операторы</b><br><br>
+        <small>Функцияны жариялау әрқашан <code>def</code> сөзінен басталады. Одан кейін функцияның аты мен жақша <code>()</code> қойылады.</small>
+    </div>
+    
+    <div class="feature-card">
+        <b>2. Аргументтер (Параметрлер)</b><br><br>
+        <small>Жақша ішіне функция жұмыс істеу үшін сырттан қабылдайтын айнымалыларды (мәліметтерді) жазамыз.</small>
+    </div>
+    
+    <div class="feature-card">
+        <b>3. return операторы</b><br><br>
+        <small>Функция орындаған есептеу нәтижесін негізгі бағдарламаға қайтару үшін қолданылады. <code>return</code>-нен кейін функция жұмысын тоқтатады.</small>
+    </div>
+</div>
+
+<hr>
+
+<h2>🧠 Тәжірибелік алаң (Sandbox)</h2>
+<p>Төмендегі кодта екі санның көбейтіндісін табатын және мәтінмен сәлемдесетін өз функцияларымыз жазылған. Кодты өзгертіп, <b>▶ Run Code</b> батырмасын басыңыз:</p>
+
+<div class="editor-container">
+    <textarea id="code" rows="12">
+# 1. Ең қарапайым функцияны құру
+def salem_ber(esim):
+    return "Сәлем, " + esim + "! Бағдарламалау әлеміне қош келдің!"
+
+# 2. Сандармен жұмыс істейтін функция
+def kubeytu(a, b):
+    natizhe = a * b
+    return natizhe
+
+# Функцияларды шақыру және нәтижесін шығару
+print(salem_ber("Асхат"))
+
+zhauap = kubeytu(5, 6)
+print("Көбейтіндінің нәтижесі:", zhauap)
+    </textarea>
+</div>
+
+<button class="btn-run" onclick="runCode()">▶ Run Code</button>
+
+<div style="margin-top: 15px; color: var(--text-light); font-size: 14px; font-weight: 500;">Нәтиже (Output):</div>
+<pre id="output">Нәтиже осында шығады...</pre>
+
+<div class="feature-card tip-card">
+    <h4>💡 Маңызды ереже:</h4>
+    <p style="margin-bottom: 0; color: var(--text-main);">Функцияның ішінде жасалған айнымалылар тек сол функцияның ішінде ғана өмір сүреді. Оны бағдарламалауда <b>"Жергілікті көріну аймағы" (Local Scope)</b> деп атайды.</p>
+</div>
+
+<script>
+    function runCode() {
+        const output = document.getElementById('output');
+        output.textContent = "Код орындалуда...";
+        setTimeout(() => {
+            output.textContent = "Сәлем, Асхат! Бағдарламалау әлеміне қош келдің!\nКөбейтіндінің нәтижесі: 30";
+        }, 500);
+    }
+</script>
+
+{% endblock %}
